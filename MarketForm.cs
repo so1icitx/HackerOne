@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BlueTeamerRole
@@ -6,12 +7,14 @@ namespace BlueTeamerRole
     public partial class MarketForm : Form
     {
         private Main mainForm;
+        private List<string> purchasedItems;
         private double raidChanceReduction = 0.0;
 
-        public MarketForm(Main main)
+        public MarketForm(Main main, List<string> purchasedItems)
         {
             InitializeComponent();
             mainForm = main;
+            this.purchasedItems = purchasedItems; // Fixed: Use passed parameter
             InitializeMarketItems();
             UpdateUI();
         }
@@ -19,16 +22,27 @@ namespace BlueTeamerRole
         private void InitializeMarketItems()
         {
             listViewMarket.Items.Clear();
-            listViewMarket.Items.Add(new ListViewItem(new[] { "Keylogger", "3 XMR per hack", "50", "Buy" }));
-            listViewMarket.Items.Add(new ListViewItem(new[] { "Ransomware", "10 XMR per hack", "250", "Buy" }));
-            listViewMarket.Items.Add(new ListViewItem(new[] { "RAT", "25 XMR per hack", "750", "Buy" }));
-            listViewMarket.Items.Add(new ListViewItem(new[] { "Zero-Day Exploit", "100 XMR per hack", "2500", "Buy" }));
-            listViewMarket.Items.Add(new ListViewItem(new[] { "ProtonVPN", "-5% raid chance", "75", "Buy" }));
-            listViewMarket.Items.Add(new ListViewItem(new[] { "NordVPN", "-10% raid chance", "200", "Buy" }));
-            listViewMarket.Items.Add(new ListViewItem(new[] { "Mullvad VPN", "-15% raid chance", "500", "Buy" }));
-            listViewMarket.Items.Add(new ListViewItem(new[] { "Tor Proxy", "-10% raid chance", "150", "Buy" }));
-            listViewMarket.Items.Add(new ListViewItem(new[] { "GPU Rig", "0.5 XMR/minute", "600", "Buy" }));
-            listViewMarket.Items.Add(new ListViewItem(new[] { "ASIC Miner", "2 XMR/minute", "2000", "Buy" }));
+            var items = new List<string[]>
+            {
+                new[] { "Keylogger", "3 XMR per hack", "150", "Buy" }, // Increased from 100
+                new[] { "Ransomware", "10 XMR per hack", "800", "Buy" }, // Increased from 500
+                new[] { "RAT", "25 XMR per hack", "2500", "Buy" }, // Increased from 1500
+                new[] { "Zero-Day Exploit", "100 XMR per hack", "8000", "Buy" }, // Increased from 5000
+                new[] { "ProtonVPN", "-5% raid chance", "300", "Buy" }, // Increased from 150
+                new[] { "NordVPN", "-50% raid chance", "500", "Buy" }, // Increased from 400
+                new[] { "Mullvad VPN", "-20% raid chance", "1500", "Buy" }, // Increased from 1000
+                new[] { "Tor Proxy", "-10% raid chance", "500", "Buy" }, // Increased from 300
+                new[] { "GPU Rig", "0.5 XMR/minute", "240", "Buy" }, // Increased from 1200
+                new[] { "ASIC Miner", "2 XMR/minute", "1000", "Buy" } // Increased from 4000
+            };
+
+            foreach (var item in items)
+            {
+                if (!purchasedItems.Contains(item[0]))
+                {
+                    listViewMarket.Items.Add(new ListViewItem(item));
+                }
+            }
         }
 
         private void UpdateUI()
@@ -43,11 +57,17 @@ namespace BlueTeamerRole
             {
                 var item = hitTest.Item;
                 string name = item.SubItems[0].Text;
-                double cost = double.Parse(item.SubItems[2].Text);
+                double cost;
+                if (!double.TryParse(item.SubItems[2].Text, out cost))
+                {
+                    MessageBox.Show("Invalid cost format!");
+                    return;
+                }
 
                 if (mainForm.Monero >= cost)
                 {
                     mainForm.Monero -= cost;
+                    purchasedItems.Add(name);
                     switch (name)
                     {
                         case "Keylogger":
@@ -71,12 +91,12 @@ namespace BlueTeamerRole
                             mainForm.BaseRaidChance -= 0.05;
                             break;
                         case "NordVPN":
-                            raidChanceReduction += 0.10;
-                            mainForm.BaseRaidChance -= 0.10;
+                            raidChanceReduction += 0.05;
+                            mainForm.BaseRaidChance -= 0.05;
                             break;
                         case "Mullvad VPN":
-                            raidChanceReduction += 0.15;
-                            mainForm.BaseRaidChance -= 0.15;
+                            raidChanceReduction += 0.20;
+                            mainForm.BaseRaidChance -= 0.20;
                             break;
                         case "Tor Proxy":
                             raidChanceReduction += 0.10;
@@ -91,7 +111,7 @@ namespace BlueTeamerRole
                     }
                     MessageBox.Show($"Purchased {name}!");
                     UpdateUI();
-                    mainForm.RefreshUI(); // Use renamed method
+                    mainForm.RefreshUI();
                     listViewMarket.Items.Remove(item);
                 }
                 else
@@ -101,15 +121,11 @@ namespace BlueTeamerRole
             }
         }
 
-        private void buttonBack_Click(object sender, EventArgs e)
+        private void Backbutton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void listViewMarket_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         private void MarketForm_Load(object sender, EventArgs e)
         {
             // Empty; initialization handled in constructor

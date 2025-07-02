@@ -31,7 +31,18 @@ namespace BlueTeamerRole
         {
             Main mainForm = new Main();
             this.Hide();
+            mainForm.FormClosed += (s, args) => this.Show();
             mainForm.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainbutton3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

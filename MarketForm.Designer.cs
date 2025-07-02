@@ -36,7 +36,7 @@ namespace BlueTeamerRole
             this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnCost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colAction = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.buttonBack = new System.Windows.Forms.Button();
+            this.Backbutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelMonero
@@ -69,7 +69,8 @@ namespace BlueTeamerRole
             this.listViewMarket.TabIndex = 1;
             this.listViewMarket.UseCompatibleStateImageBehavior = false;
             this.listViewMarket.View = System.Windows.Forms.View.Details;
-            this.listViewMarket.SelectedIndexChanged += new System.EventHandler(this.listViewMarket_SelectedIndexChanged);
+            //this.listViewMarket.SelectedIndexChanged += new System.EventHandler(this.listViewMarket_SelectedIndexChanged);
+            this.listViewMarket.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewMarket_MouseClick);
             // 
             // colName
             // 
@@ -91,17 +92,18 @@ namespace BlueTeamerRole
             this.colAction.Text = "Action";
             this.colAction.Width = 100;
             // 
-            // buttonBack
+            // Backbutton
             // 
-            this.buttonBack.BackColor = System.Drawing.Color.DarkGray;
-            this.buttonBack.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(20, 500);
-            this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(150, 40);
-            this.buttonBack.TabIndex = 2;
-            this.buttonBack.Text = "Back to Hacking";
-            this.buttonBack.UseVisualStyleBackColor = false;
+            this.Backbutton.BackColor = System.Drawing.Color.DarkGray;
+            this.Backbutton.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Backbutton.ForeColor = System.Drawing.Color.White;
+            this.Backbutton.Location = new System.Drawing.Point(20, 500);
+            this.Backbutton.Name = "Backbutton";
+            this.Backbutton.Size = new System.Drawing.Size(150, 40);
+            this.Backbutton.TabIndex = 2;
+            this.Backbutton.Text = "Back";
+            this.Backbutton.UseVisualStyleBackColor = false;
+            this.Backbutton.Click += new System.EventHandler(this.Backbutton_Click);
             // 
             // MarketForm
             // 
@@ -109,7 +111,7 @@ namespace BlueTeamerRole
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.buttonBack);
+            this.Controls.Add(this.Backbutton);
             this.Controls.Add(this.listViewMarket);
             this.Controls.Add(this.labelMonero);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -127,10 +129,10 @@ namespace BlueTeamerRole
 
         private System.Windows.Forms.Label labelMonero;
         private System.Windows.Forms.ListView listViewMarket;
-        private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.ColumnHeader colDescription;
         private System.Windows.Forms.ColumnHeader columnCost;
         private System.Windows.Forms.ColumnHeader colAction;
+        private System.Windows.Forms.Button Backbutton;
     }
 }

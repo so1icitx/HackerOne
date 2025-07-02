@@ -1,26 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BlueTeamerRole
 {
     public partial class Main : Form
     {
-        private double monero = 0.0;
+        private double monero = 1000.0;
         private string currentMalware = "Phishing Email";
-        private double moneroPerHack = 1.0;
+        private double moneroPerHack = 2.0;
         private string currentTarget = "Public Servers";
-        private int hacksToNextTarget = 100;
+        private int hacksToNextTarget = 200; 
         private int hackCount = 0;
         private double baseRaidChance = 0.10;
         private double miningRate = 0.1;
         private Random random = new Random();
         private Timer miningTimer;
+        private List<string> purchasedItems = new List<string>();
 
         public double Monero { get { return monero; } set { monero = value; } }
         public double MoneroPerHack { get { return moneroPerHack; } set { moneroPerHack = value; } }
         public string CurrentMalware { get { return currentMalware; } set { currentMalware = value; } }
         public double BaseRaidChance { get { return baseRaidChance; } set { baseRaidChance = Math.Max(0, value); } }
         public double MiningRate { get { return miningRate; } set { miningRate = value; } }
+        public List<string> PurchasedItems { get { return purchasedItems; } }
 
         public Main()
         {
@@ -53,9 +56,12 @@ namespace BlueTeamerRole
             txtTerminal.AppendText($"Sending {currentMalware}... Success! +{moneroPerHack:F2} XMR\r\n");
             if (random.NextDouble() < baseRaidChance)
             {
-                double loss = monero * (currentTarget == "Elite Hackers" ? 0.5 : 0.25);
-                monero -= loss;
-                txtTerminal.AppendText($"RAID DETECTED! Lost {loss:F2} XMR\r\n");
+                txtTerminal.AppendText("RAID DETECTED! Game Over!\r\n");
+                miningTimer.Stop();
+                GameOver gameOverForm = new GameOver(monero, hackCount, currentTarget, purchasedItems);
+                gameOverForm.FormClosed += (s, args) => this.Close();
+                gameOverForm.Show();
+                return;
             }
             if (hackCount >= hacksToNextTarget)
             {
@@ -70,24 +76,28 @@ namespace BlueTeamerRole
             if (currentTarget == "Public Servers")
             {
                 currentTarget = "Corporate Networks";
-                hacksToNextTarget = 250;
-                baseRaidChance = 0.20;
+                hacksToNextTarget = 600; // Increased from 400
+                baseRaidChance = 0.20; // Increased from 0.25
             }
             else if (currentTarget == "Corporate Networks")
             {
                 currentTarget = "Alphabet Boys";
-                hacksToNextTarget = 500;
-                baseRaidChance = 0.30;
+                hacksToNextTarget = 1000; // Increased from 800
+                baseRaidChance = 0.40; // Increased from 0.35
             }
             else if (currentTarget == "Alphabet Boys")
             {
                 currentTarget = "Elite Hackers";
-                hacksToNextTarget = 1000;
-                baseRaidChance = 0.40;
+                hacksToNextTarget = 2000; // Increased from 1500
+                baseRaidChance = 0.60; // Increased from 0.50
             }
             else
             {
                 txtTerminal.AppendText("All targets hacked! You’ve taken down the regime!\r\n");
+                miningTimer.Stop();
+                GameOver gameOverForm = new GameOver(monero, hackCount, currentTarget, purchasedItems);
+                gameOverForm.FormClosed += (s, args) => this.Close();
+                gameOverForm.Show();
             }
             UpdateUI();
         }
@@ -101,10 +111,15 @@ namespace BlueTeamerRole
 
         private void buttonMarket_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MarketForm marketForm = new MarketForm(this);
+            MarketForm marketForm = new MarketForm(this, purchasedItems);
             marketForm.Show();
         }
+
+        private void buttonMenu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void Main_Load(object sender, EventArgs e)
         {
             // Empty; initialization handled in constructor
