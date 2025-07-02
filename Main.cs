@@ -10,28 +10,26 @@ using System.Windows.Forms;
 
 namespace BlueTeamerRole
 {
-    public partial class MainMenu : Form
+    public partial class Main : Form
     {
-        public MainMenu()
+        public Main()
         {
             InitializeComponent();
         }
 
-        private void MainMenu_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void mainbutton2_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-           
+
         }
 
-        private void mainbutton1_Click(object sender, EventArgs e)
+        private void Main_Load(object sender, EventArgs e)
         {
-            Main mainForm = new Main();
-            this.Hide();
-            mainForm.Show();
+
         }
     }
 }
