@@ -83,7 +83,6 @@
             this.labelRaid.Size = new System.Drawing.Size(153, 19);
             this.labelRaid.TabIndex = 3;
             this.labelRaid.Text = "Raid Chance: 10%";
-            this.labelRaid.Click += new System.EventHandler(this.label1_Click);
             // 
             // progressTarget
             // 
@@ -118,6 +117,7 @@
             this.buttonMarket.TabIndex = 6;
             this.buttonMarket.Text = "Dark Web Market";
             this.buttonMarket.UseVisualStyleBackColor = false;
+            this.buttonMarket.Click += new System.EventHandler(this.buttonMarket_Click);
             // 
             // Main
             // 
