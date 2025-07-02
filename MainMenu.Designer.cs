@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.mainbutton1 = new System.Windows.Forms.Button();
             this.mainbutton2 = new System.Windows.Forms.Button();
             this.mainbutton3 = new System.Windows.Forms.Button();
@@ -37,10 +38,14 @@
             // 
             // mainbutton1
             // 
+            this.mainbutton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.mainbutton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.mainbutton1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.mainbutton1.Font = new System.Drawing.Font("MingLiU-ExtB", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainbutton1.Location = new System.Drawing.Point(392, 421);
+            this.mainbutton1.ForeColor = System.Drawing.Color.Black;
+            this.mainbutton1.Location = new System.Drawing.Point(371, 433);
             this.mainbutton1.Name = "mainbutton1";
-            this.mainbutton1.Size = new System.Drawing.Size(404, 85);
+            this.mainbutton1.Size = new System.Drawing.Size(468, 74);
             this.mainbutton1.TabIndex = 0;
             this.mainbutton1.Text = "HACK THE PLANET\r\n\r\n";
             this.mainbutton1.UseVisualStyleBackColor = true;
@@ -48,19 +53,21 @@
             // mainbutton2
             // 
             this.mainbutton2.Font = new System.Drawing.Font("Microsoft Yi Baiti", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainbutton2.Location = new System.Drawing.Point(402, 527);
+            this.mainbutton2.ForeColor = System.Drawing.Color.Black;
+            this.mainbutton2.Location = new System.Drawing.Point(423, 522);
             this.mainbutton2.Name = "mainbutton2";
             this.mainbutton2.Size = new System.Drawing.Size(379, 70);
             this.mainbutton2.TabIndex = 1;
             this.mainbutton2.Text = "OPTIONS";
             this.mainbutton2.UseVisualStyleBackColor = true;
+            this.mainbutton2.Click += new System.EventHandler(this.mainbutton2_Click);
             // 
             // mainbutton3
             // 
             this.mainbutton3.Font = new System.Drawing.Font("Microsoft Yi Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainbutton3.Location = new System.Drawing.Point(476, 625);
+            this.mainbutton3.Location = new System.Drawing.Point(501, 616);
             this.mainbutton3.Name = "mainbutton3";
-            this.mainbutton3.Size = new System.Drawing.Size(231, 52);
+            this.mainbutton3.Size = new System.Drawing.Size(237, 64);
             this.mainbutton3.TabIndex = 2;
             this.mainbutton3.Text = "EXIT";
             this.mainbutton3.UseVisualStyleBackColor = true;
@@ -83,16 +90,15 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1194, 737);
-            this.ControlBox = false;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.mainbutton3);
             this.Controls.Add(this.mainbutton2);
             this.Controls.Add(this.mainbutton1);
-            this.HelpButton = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainMenu";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "Form1";
+            this.Text = "hackerone";
             this.Load += new System.EventHandler(this.MainMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

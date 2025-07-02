@@ -21,5 +21,10 @@ namespace BlueTeamerRole
         {
 
         }
+
+        private void mainbutton2_Click(object sender, EventArgs e)
+        {
+            FlatAppearance.MouseOverBackColor = Color.Red;
+        }
     }
 }
