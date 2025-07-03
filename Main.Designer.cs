@@ -39,13 +39,15 @@
             // 
             // buttonHack
             // 
+            this.buttonHack.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonHack.BackColor = System.Drawing.Color.Black;
             this.buttonHack.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.buttonHack.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonHack.ForeColor = System.Drawing.Color.Lime;
-            this.buttonHack.Location = new System.Drawing.Point(300, 400);
+            this.buttonHack.Location = new System.Drawing.Point(400, 492);
+            this.buttonHack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonHack.Name = "buttonHack";
-            this.buttonHack.Size = new System.Drawing.Size(200, 80);
+            this.buttonHack.Size = new System.Drawing.Size(267, 98);
             this.buttonHack.TabIndex = 0;
             this.buttonHack.Text = "HACK";
             this.buttonHack.UseVisualStyleBackColor = false;
@@ -53,67 +55,79 @@
             // 
             // labelmonero
             // 
+            this.labelmonero.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelmonero.AutoSize = true;
             this.labelmonero.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelmonero.ForeColor = System.Drawing.Color.Lime;
-            this.labelmonero.Location = new System.Drawing.Point(20, 20);
+            this.labelmonero.Location = new System.Drawing.Point(27, 25);
+            this.labelmonero.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelmonero.Name = "labelmonero";
-            this.labelmonero.Size = new System.Drawing.Size(99, 19);
+            this.labelmonero.Size = new System.Drawing.Size(120, 23);
             this.labelmonero.TabIndex = 1;
             this.labelmonero.Text = "XMR : 0.00";
             // 
             // labeltarget
             // 
+            this.labeltarget.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labeltarget.AutoSize = true;
             this.labeltarget.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labeltarget.ForeColor = System.Drawing.Color.Lime;
-            this.labeltarget.Location = new System.Drawing.Point(20, 50);
+            this.labeltarget.Location = new System.Drawing.Point(27, 62);
+            this.labeltarget.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labeltarget.Name = "labeltarget";
-            this.labeltarget.Size = new System.Drawing.Size(207, 19);
+            this.labeltarget.Size = new System.Drawing.Size(252, 23);
             this.labeltarget.TabIndex = 2;
             this.labeltarget.Text = "Target: Public Servers";
             // 
             // labelRaid
             // 
+            this.labelRaid.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelRaid.AutoSize = true;
             this.labelRaid.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelRaid.ForeColor = System.Drawing.Color.Lime;
-            this.labelRaid.Location = new System.Drawing.Point(20, 80);
+            this.labelRaid.Location = new System.Drawing.Point(27, 98);
+            this.labelRaid.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRaid.Name = "labelRaid";
-            this.labelRaid.Size = new System.Drawing.Size(153, 19);
+            this.labelRaid.Size = new System.Drawing.Size(186, 23);
             this.labelRaid.TabIndex = 3;
             this.labelRaid.Text = "Raid Chance: 10%";
             // 
             // progressTarget
             // 
-            this.progressTarget.Location = new System.Drawing.Point(20, 110);
+            this.progressTarget.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.progressTarget.Location = new System.Drawing.Point(27, 135);
+            this.progressTarget.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressTarget.Maximum = 50;
             this.progressTarget.Name = "progressTarget";
-            this.progressTarget.Size = new System.Drawing.Size(300, 20);
+            this.progressTarget.Size = new System.Drawing.Size(400, 25);
             this.progressTarget.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressTarget.TabIndex = 4;
             // 
             // txtTerminal
             // 
+            this.txtTerminal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtTerminal.BackColor = System.Drawing.Color.Black;
             this.txtTerminal.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTerminal.ForeColor = System.Drawing.Color.Lime;
-            this.txtTerminal.Location = new System.Drawing.Point(20, 154);
+            this.txtTerminal.Location = new System.Drawing.Point(27, 190);
+            this.txtTerminal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTerminal.Multiline = true;
             this.txtTerminal.Name = "txtTerminal";
             this.txtTerminal.ReadOnly = true;
             this.txtTerminal.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtTerminal.Size = new System.Drawing.Size(760, 200);
+            this.txtTerminal.Size = new System.Drawing.Size(1012, 245);
             this.txtTerminal.TabIndex = 5;
             // 
             // buttonMarket
             // 
+            this.buttonMarket.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonMarket.BackColor = System.Drawing.Color.DarkGray;
             this.buttonMarket.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonMarket.ForeColor = System.Drawing.Color.White;
-            this.buttonMarket.Location = new System.Drawing.Point(20, 509);
+            this.buttonMarket.Location = new System.Drawing.Point(27, 626);
+            this.buttonMarket.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonMarket.Name = "buttonMarket";
-            this.buttonMarket.Size = new System.Drawing.Size(150, 40);
+            this.buttonMarket.Size = new System.Drawing.Size(200, 49);
             this.buttonMarket.TabIndex = 6;
             this.buttonMarket.Text = "Dark Web Market";
             this.buttonMarket.UseVisualStyleBackColor = false;
@@ -121,11 +135,11 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(800, 561);
+            this.ClientSize = new System.Drawing.Size(1067, 690);
             this.Controls.Add(this.buttonMarket);
             this.Controls.Add(this.txtTerminal);
             this.Controls.Add(this.progressTarget);
@@ -135,6 +149,7 @@
             this.Controls.Add(this.buttonHack);
             this.ForeColor = System.Drawing.Color.BurlyWood;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Main";
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
@@ -144,6 +159,8 @@
         }
 
         #endregion
+
+
 
         private System.Windows.Forms.Button buttonHack;
         private System.Windows.Forms.Label labelmonero;

@@ -6,14 +6,15 @@ namespace BlueTeamerRole
 {
     public partial class Main : Form
     {
-        private double monero = 1000.0;
+        private double monero = 100.0;
         private string currentMalware = "Phishing Email";
         private double moneroPerHack = 2.0;
         private string currentTarget = "Public Servers";
-        private int hacksToNextTarget = 200; 
+        private int hacksToNextTarget = 100;
         private int hackCount = 0;
-        private double baseRaidChance = 0.10;
-        private double miningRate = 0.1;
+        private double baseRaidChance = 0.01;
+        private double miningRate = 7.0;
+        private double raidChanceReduction = 0.0; // New field to track total raid chance reduction
         private Random random = new Random();
         private Timer miningTimer;
         private List<string> purchasedItems = new List<string>();
@@ -23,16 +24,49 @@ namespace BlueTeamerRole
         public string CurrentMalware { get { return currentMalware; } set { currentMalware = value; } }
         public double BaseRaidChance { get { return baseRaidChance; } set { baseRaidChance = Math.Max(0, value); } }
         public double MiningRate { get { return miningRate; } set { miningRate = value; } }
+        public double RaidChanceReduction { get { return raidChanceReduction; } set { raidChanceReduction = value; } } // New property
         public List<string> PurchasedItems { get { return purchasedItems; } }
 
         public Main()
         {
             InitializeComponent();
             miningTimer = new Timer();
-            miningTimer.Interval = 60000;
+            miningTimer.Interval = 10000;
             miningTimer.Tick += MiningTimer_Tick;
             miningTimer.Start();
             UpdateUI();
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Bounds = Screen.PrimaryScreen.Bounds;
+
+            // Custom UI scaling from your code
+            this.buttonMarket.Font = new System.Drawing.Font("Consolas", 13.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMarket.Location = new System.Drawing.Point(20, 720);
+            this.buttonMarket.Size = new System.Drawing.Size(300, 100);
+            // monero
+            this.labelmonero.Size = new System.Drawing.Size(300, 80);
+            this.labelmonero.Location = new System.Drawing.Point(27, 25);
+            this.labelmonero.Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // target
+            this.labeltarget.Size = new System.Drawing.Size(300, 80);
+            this.labeltarget.Location = new System.Drawing.Point(20, 70);
+            this.labeltarget.Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // raid chance
+            this.labelRaid.Size = new System.Drawing.Size(300, 80);
+            this.labelRaid.Location = new System.Drawing.Point(20, 115);
+            this.labelRaid.Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // progress bar
+            this.progressTarget.Size = new System.Drawing.Size(400, 25);
+            this.progressTarget.Location = new System.Drawing.Point(27, 160);
+            this.progressTarget.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            // terminal
+            this.txtTerminal.Size = new System.Drawing.Size(1500, 245);
+            this.txtTerminal.Location = new System.Drawing.Point(27, 200);
+            this.txtTerminal.Font = new System.Drawing.Font("Consolas", 14.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // hack button
+            this.buttonHack.Font = new System.Drawing.Font("Consolas", 20.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHack.Location = new System.Drawing.Point(350, 450);
+            this.buttonHack.Size = new System.Drawing.Size(800, 120);
         }
 
         private void UpdateUI()
@@ -76,20 +110,20 @@ namespace BlueTeamerRole
             if (currentTarget == "Public Servers")
             {
                 currentTarget = "Corporate Networks";
-                hacksToNextTarget = 600; // Increased from 400
-                baseRaidChance = 0.20; // Increased from 0.25
+                hacksToNextTarget = 150;
+                baseRaidChance = 0.11 - raidChanceReduction; // Apply reduction after setting base value
             }
             else if (currentTarget == "Corporate Networks")
             {
                 currentTarget = "Alphabet Boys";
-                hacksToNextTarget = 1000; // Increased from 800
-                baseRaidChance = 0.40; // Increased from 0.35
+                hacksToNextTarget = 215;
+                baseRaidChance = 0.25 - raidChanceReduction; // Apply reduction after setting base value
             }
             else if (currentTarget == "Alphabet Boys")
             {
                 currentTarget = "Elite Hackers";
-                hacksToNextTarget = 2000; // Increased from 1500
-                baseRaidChance = 0.60; // Increased from 0.50
+                hacksToNextTarget = 300;
+                baseRaidChance = 0.40 - raidChanceReduction; // Apply reduction after setting base value
             }
             else
             {

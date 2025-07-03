@@ -41,17 +41,20 @@ namespace BlueTeamerRole
             // 
             // labelMonero
             // 
+            this.labelMonero.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelMonero.AutoSize = true;
             this.labelMonero.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMonero.ForeColor = System.Drawing.Color.Lime;
-            this.labelMonero.Location = new System.Drawing.Point(20, 20);
+            this.labelMonero.Location = new System.Drawing.Point(27, 25);
+            this.labelMonero.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMonero.Name = "labelMonero";
-            this.labelMonero.Size = new System.Drawing.Size(90, 19);
+            this.labelMonero.Size = new System.Drawing.Size(109, 23);
             this.labelMonero.TabIndex = 0;
             this.labelMonero.Text = "XMR: 0.00";
             // 
             // listViewMarket
             // 
+            this.listViewMarket.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listViewMarket.BackColor = System.Drawing.Color.Black;
             this.listViewMarket.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
@@ -63,43 +66,45 @@ namespace BlueTeamerRole
             this.listViewMarket.FullRowSelect = true;
             this.listViewMarket.GridLines = true;
             this.listViewMarket.HideSelection = false;
-            this.listViewMarket.Location = new System.Drawing.Point(20, 60);
+            this.listViewMarket.Location = new System.Drawing.Point(27, 74);
+            this.listViewMarket.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listViewMarket.Name = "listViewMarket";
-            this.listViewMarket.Size = new System.Drawing.Size(740, 200);
+            this.listViewMarket.Size = new System.Drawing.Size(985, 245);
             this.listViewMarket.TabIndex = 1;
             this.listViewMarket.UseCompatibleStateImageBehavior = false;
             this.listViewMarket.View = System.Windows.Forms.View.Details;
-            //this.listViewMarket.SelectedIndexChanged += new System.EventHandler(this.listViewMarket_SelectedIndexChanged);
             this.listViewMarket.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewMarket_MouseClick);
             // 
             // colName
             // 
             this.colName.Text = "Name";
-            this.colName.Width = 150;
+            this.colName.Width = 350;
             // 
             // colDescription
             // 
             this.colDescription.Text = "Description";
-            this.colDescription.Width = 300;
+            this.colDescription.Width = 350;
             // 
             // columnCost
             // 
             this.columnCost.Text = "XMR";
-            this.columnCost.Width = 100;
+            this.columnCost.Width = 200;
             // 
             // colAction
             // 
             this.colAction.Text = "Action";
-            this.colAction.Width = 100;
+            this.colAction.Width = 200;
             // 
             // Backbutton
             // 
+            this.Backbutton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Backbutton.BackColor = System.Drawing.Color.DarkGray;
             this.Backbutton.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Backbutton.ForeColor = System.Drawing.Color.White;
-            this.Backbutton.Location = new System.Drawing.Point(20, 500);
+            this.Backbutton.Location = new System.Drawing.Point(27, 615);
+            this.Backbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Backbutton.Name = "Backbutton";
-            this.Backbutton.Size = new System.Drawing.Size(150, 40);
+            this.Backbutton.Size = new System.Drawing.Size(200, 49);
             this.Backbutton.TabIndex = 2;
             this.Backbutton.Text = "Back";
             this.Backbutton.UseVisualStyleBackColor = false;
@@ -107,14 +112,15 @@ namespace BlueTeamerRole
             // 
             // MarketForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(1045, 690);
             this.Controls.Add(this.Backbutton);
             this.Controls.Add(this.listViewMarket);
             this.Controls.Add(this.labelMonero);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MarketForm";
             this.Text = "MarketForm";
             this.Load += new System.EventHandler(this.MarketForm_Load);

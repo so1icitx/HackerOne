@@ -63,6 +63,26 @@ namespace BlueTeamerRole.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap alphabetboys {
+            get {
+                object obj = ResourceManager.GetObject("alphabetboys", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap erasebg_transformed {
+            get {
+                object obj = ResourceManager.GetObject("erasebg-transformed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap N1x_ejqB {
             get {
                 object obj = ResourceManager.GetObject("N1x_ejqB", resourceCulture);
@@ -76,6 +96,16 @@ namespace BlueTeamerRole.Properties {
         internal static System.Drawing.Bitmap N1x_ejqB_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("N1x_ejqB-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap openart_image_vboR3s0F_1751522624983_raw {
+            get {
+                object obj = ResourceManager.GetObject("openart-image_vboR3s0F_1751522624983_raw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

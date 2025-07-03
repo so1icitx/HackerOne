@@ -8,15 +8,31 @@ namespace BlueTeamerRole
     {
         private Main mainForm;
         private List<string> purchasedItems;
-        private double raidChanceReduction = 0.0;
 
         public MarketForm(Main main, List<string> purchasedItems)
         {
             InitializeComponent();
             mainForm = main;
-            this.purchasedItems = purchasedItems; // Fixed: Use passed parameter
+            this.purchasedItems = purchasedItems;
             InitializeMarketItems();
             UpdateUI();
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Bounds = Screen.PrimaryScreen.Bounds;
+
+            // Custom UI scaling from your code
+            // monero
+            this.labelMonero.Size = new System.Drawing.Size(300, 80);
+            this.labelMonero.Location = new System.Drawing.Point(27, 25);
+            this.labelMonero.Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // listViewMarket
+            this.listViewMarket.Size = new System.Drawing.Size(1200, 500);
+            this.listViewMarket.Location = new System.Drawing.Point(27, 100);
+            this.listViewMarket.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // Back button
+            this.Backbutton.Size = new System.Drawing.Size(250, 80);
+            this.Backbutton.Location = new System.Drawing.Point(27, 750);
+            this.Backbutton.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void InitializeMarketItems()
@@ -24,16 +40,16 @@ namespace BlueTeamerRole
             listViewMarket.Items.Clear();
             var items = new List<string[]>
             {
-                new[] { "Keylogger", "3 XMR per hack", "150", "Buy" }, // Increased from 100
-                new[] { "Ransomware", "10 XMR per hack", "800", "Buy" }, // Increased from 500
-                new[] { "RAT", "25 XMR per hack", "2500", "Buy" }, // Increased from 1500
-                new[] { "Zero-Day Exploit", "100 XMR per hack", "8000", "Buy" }, // Increased from 5000
-                new[] { "ProtonVPN", "-5% raid chance", "300", "Buy" }, // Increased from 150
-                new[] { "NordVPN", "-50% raid chance", "500", "Buy" }, // Increased from 400
-                new[] { "Mullvad VPN", "-20% raid chance", "1500", "Buy" }, // Increased from 1000
-                new[] { "Tor Proxy", "-10% raid chance", "500", "Buy" }, // Increased from 300
-                new[] { "GPU Rig", "0.5 XMR/minute", "240", "Buy" }, // Increased from 1200
-                new[] { "ASIC Miner", "2 XMR/minute", "1000", "Buy" } // Increased from 4000
+                new[] { "Keylogger", "5 XMR per hack", "70", "Buy" },
+                new[] { "Ransomware", "10 XMR per hack", "200", "Buy" },
+                new[] { "RAT", "25 XMR per hack", "500", "Buy" },
+                new[] { "Zero-Day Exploit", "100 XMR per hack", "1200", "Buy" },
+                new[] { "ProtonVPN", "-5% raid chance", "120", "Buy" },
+                new[] { "NordVPN", "-5% raid chance", "200", "Buy" },
+                new[] { "Mullvad VPN", "-20% raid chance", "500", "Buy" },
+                new[] { "Tor Proxy", "-10% raid chance", "325", "Buy" },
+                new[] { "GPU Rig", "70 XMR/min", "300", "Buy" },
+                new[] { "ASIC Miner", "600 XMR/min", "800", "Buy" }
             };
 
             foreach (var item in items)
@@ -71,7 +87,7 @@ namespace BlueTeamerRole
                     switch (name)
                     {
                         case "Keylogger":
-                            mainForm.MoneroPerHack = 3.0;
+                            mainForm.MoneroPerHack = 5.0;
                             mainForm.CurrentMalware = name;
                             break;
                         case "Ransomware":
@@ -87,26 +103,26 @@ namespace BlueTeamerRole
                             mainForm.CurrentMalware = name;
                             break;
                         case "ProtonVPN":
-                            raidChanceReduction += 0.05;
+                            mainForm.RaidChanceReduction += 0.05;
                             mainForm.BaseRaidChance -= 0.05;
                             break;
                         case "NordVPN":
-                            raidChanceReduction += 0.05;
+                            mainForm.RaidChanceReduction += 0.05;
                             mainForm.BaseRaidChance -= 0.05;
                             break;
                         case "Mullvad VPN":
-                            raidChanceReduction += 0.20;
+                            mainForm.RaidChanceReduction += 0.20;
                             mainForm.BaseRaidChance -= 0.20;
                             break;
                         case "Tor Proxy":
-                            raidChanceReduction += 0.10;
+                            mainForm.RaidChanceReduction += 0.10;
                             mainForm.BaseRaidChance -= 0.10;
                             break;
                         case "GPU Rig":
-                            mainForm.MiningRate = 0.5;
+                            mainForm.MiningRate = 12;
                             break;
                         case "ASIC Miner":
-                            mainForm.MiningRate = 2.0;
+                            mainForm.MiningRate = 25;
                             break;
                     }
                     MessageBox.Show($"Purchased {name}!");

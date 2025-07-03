@@ -113,5 +113,14 @@
   <ItemGroup>
     <None Include="Resources\N1x_ejqB-removebg-preview.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alphabetboys.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\openart-image_vboR3s0F_1751522624983_raw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\erasebg-transformed.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
