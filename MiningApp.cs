@@ -42,8 +42,7 @@ namespace BlueTeamerRole
             if (!IsDisposed && IsHandleCreated && labelMonero != null && labelWallet != null && labelMiningRate != null && listViewPcParts != null)
             {
                 labelMonero.Text = $"XMR: {gameState.Monero:F2}";
-                labelWallet.Text = $"Wallet: {gameState.WalletAddress}";
-                labelMiningRate.Text = $"Mining Rate: {(gameState.MiningRate * 6):F2} XMR/min";
+                labelMiningRate.Text = $"Mining Rate: {(gameState.MiningRate * 6):F2}  XMR/min";
                 labelMonero.Refresh();
                 labelWallet.Refresh();
                 labelMiningRate.Refresh();

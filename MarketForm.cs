@@ -146,9 +146,10 @@ namespace BlueTeamerRole
             }
             else
             {
-                MessageBox.Show($"MarketForm UI error: Form disposed={IsDisposed}, IsHandleCreated={IsHandleCreated}, labelMonero={(labelMonero == null ? "null" : "not null")}, Monero={gameState.Monero:F2}, Visible={this.Visible}");
-                if (labelMonero != null)
-                    labelMonero.Text = "XMR: Error";
+                labelMonero.Text = $"XMR: {gameState.Monero:F2}";
+                labelMonero.Invalidate();
+                labelMonero.Update();
+
             }
         }
 
@@ -322,6 +323,11 @@ namespace BlueTeamerRole
 
         private void MarketForm_Load_1(object sender, EventArgs e)
         {
+        }
+
+        private void listViewVpnProxy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

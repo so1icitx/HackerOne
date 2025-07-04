@@ -44,7 +44,7 @@ namespace BlueTeamerRole
             this.tabControlMarket.Font = new System.Drawing.Font("Consolas", 16.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControlMarket.ForeColor = System.Drawing.Color.White;
             this.tabControlMarket.Location = new System.Drawing.Point(36, 203);
-            this.tabControlMarket.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControlMarket.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlMarket.Name = "tabControlMarket";
             this.tabControlMarket.SelectedIndex = 0;
             this.tabControlMarket.Size = new System.Drawing.Size(1000, 400);
@@ -53,10 +53,10 @@ namespace BlueTeamerRole
             // tabVpnProxy
             // 
             this.tabVpnProxy.Controls.Add(this.listViewVpnProxy);
-            this.tabVpnProxy.Location = new System.Drawing.Point(4, 38);
-            this.tabVpnProxy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabVpnProxy.Location = new System.Drawing.Point(4, 42);
+            this.tabVpnProxy.Margin = new System.Windows.Forms.Padding(4);
             this.tabVpnProxy.Name = "tabVpnProxy";
-            this.tabVpnProxy.Size = new System.Drawing.Size(992, 309);
+            this.tabVpnProxy.Size = new System.Drawing.Size(992, 354);
             this.tabVpnProxy.TabIndex = 0;
             this.tabVpnProxy.Text = "VPNs/Proxies";
             // 
@@ -68,21 +68,22 @@ namespace BlueTeamerRole
             this.listViewVpnProxy.FullRowSelect = true;
             this.listViewVpnProxy.HideSelection = false;
             this.listViewVpnProxy.Location = new System.Drawing.Point(13, 12);
-            this.listViewVpnProxy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewVpnProxy.Margin = new System.Windows.Forms.Padding(4);
             this.listViewVpnProxy.Name = "listViewVpnProxy";
-            this.listViewVpnProxy.Size = new System.Drawing.Size(972, 326);
+            this.listViewVpnProxy.Size = new System.Drawing.Size(1872, 326);
             this.listViewVpnProxy.TabIndex = 0;
             this.listViewVpnProxy.UseCompatibleStateImageBehavior = false;
             this.listViewVpnProxy.View = System.Windows.Forms.View.Details;
+            this.listViewVpnProxy.SelectedIndexChanged += new System.EventHandler(this.listViewVpnProxy_SelectedIndexChanged);
             this.listViewVpnProxy.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
             // 
             // tabDrugs
             // 
             this.tabDrugs.Controls.Add(this.listViewDrugs);
-            this.tabDrugs.Location = new System.Drawing.Point(4, 38);
-            this.tabDrugs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabDrugs.Location = new System.Drawing.Point(4, 42);
+            this.tabDrugs.Margin = new System.Windows.Forms.Padding(4);
             this.tabDrugs.Name = "tabDrugs";
-            this.tabDrugs.Size = new System.Drawing.Size(992, 109);
+            this.tabDrugs.Size = new System.Drawing.Size(992, 354);
             this.tabDrugs.TabIndex = 1;
             this.tabDrugs.Text = "Drugs";
             // 
@@ -94,7 +95,7 @@ namespace BlueTeamerRole
             this.listViewDrugs.FullRowSelect = true;
             this.listViewDrugs.HideSelection = false;
             this.listViewDrugs.Location = new System.Drawing.Point(13, 12);
-            this.listViewDrugs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewDrugs.Margin = new System.Windows.Forms.Padding(4);
             this.listViewDrugs.Name = "listViewDrugs";
             this.listViewDrugs.Size = new System.Drawing.Size(972, 326);
             this.listViewDrugs.TabIndex = 0;
@@ -105,10 +106,10 @@ namespace BlueTeamerRole
             // tabHacks
             // 
             this.tabHacks.Controls.Add(this.listViewHacks);
-            this.tabHacks.Location = new System.Drawing.Point(4, 38);
-            this.tabHacks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabHacks.Location = new System.Drawing.Point(4, 42);
+            this.tabHacks.Margin = new System.Windows.Forms.Padding(4);
             this.tabHacks.Name = "tabHacks";
-            this.tabHacks.Size = new System.Drawing.Size(992, 109);
+            this.tabHacks.Size = new System.Drawing.Size(992, 354);
             this.tabHacks.TabIndex = 2;
             this.tabHacks.Text = "Hacks";
             // 
@@ -120,7 +121,7 @@ namespace BlueTeamerRole
             this.listViewHacks.FullRowSelect = true;
             this.listViewHacks.HideSelection = false;
             this.listViewHacks.Location = new System.Drawing.Point(13, 12);
-            this.listViewHacks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewHacks.Margin = new System.Windows.Forms.Padding(4);
             this.listViewHacks.Name = "listViewHacks";
             this.listViewHacks.Size = new System.Drawing.Size(972, 326);
             this.listViewHacks.TabIndex = 0;
@@ -131,10 +132,10 @@ namespace BlueTeamerRole
             // tabPcParts
             // 
             this.tabPcParts.Controls.Add(this.listViewPcParts);
-            this.tabPcParts.Location = new System.Drawing.Point(4, 38);
-            this.tabPcParts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPcParts.Location = new System.Drawing.Point(4, 42);
+            this.tabPcParts.Margin = new System.Windows.Forms.Padding(4);
             this.tabPcParts.Name = "tabPcParts";
-            this.tabPcParts.Size = new System.Drawing.Size(992, 109);
+            this.tabPcParts.Size = new System.Drawing.Size(992, 354);
             this.tabPcParts.TabIndex = 3;
             this.tabPcParts.Text = "PC Parts";
             // 
@@ -146,7 +147,7 @@ namespace BlueTeamerRole
             this.listViewPcParts.FullRowSelect = true;
             this.listViewPcParts.HideSelection = false;
             this.listViewPcParts.Location = new System.Drawing.Point(13, 12);
-            this.listViewPcParts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewPcParts.Margin = new System.Windows.Forms.Padding(4);
             this.listViewPcParts.Name = "listViewPcParts";
             this.listViewPcParts.Size = new System.Drawing.Size(972, 326);
             this.listViewPcParts.TabIndex = 0;
@@ -160,17 +161,18 @@ namespace BlueTeamerRole
             this.labelMonero.Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMonero.ForeColor = System.Drawing.Color.LimeGreen;
             this.labelMonero.Location = new System.Drawing.Point(36, 31);
+            this.labelMonero.Name = "labelMonero";
             this.labelMonero.Size = new System.Drawing.Size(200, 49);
             this.labelMonero.TabIndex = 0;
             this.labelMonero.Text = "XMR: 0.00";
             // 
             // Backbutton
             // 
-            this.Backbutton.BackColor = System.Drawing.Color.DarkGray;
+            this.Backbutton.BackColor = System.Drawing.Color.Black;
             this.Backbutton.Font = new System.Drawing.Font("Consolas", 13.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Backbutton.ForeColor = System.Drawing.Color.LimeGreen;
-            this.Backbutton.Location = new System.Drawing.Point(36, 660);
-            this.Backbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Backbutton.ForeColor = System.Drawing.Color.MediumPurple;
+            this.Backbutton.Location = new System.Drawing.Point(36, 860);
+            this.Backbutton.Margin = new System.Windows.Forms.Padding(4);
             this.Backbutton.Name = "Backbutton";
             this.Backbutton.Size = new System.Drawing.Size(300, 122);
             this.Backbutton.TabIndex = 2;
@@ -187,7 +189,7 @@ namespace BlueTeamerRole
             this.Controls.Add(this.tabControlMarket);
             this.Controls.Add(this.labelMonero);
             this.Controls.Add(this.Backbutton);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MarketForm";
             this.Text = "Dark Web Market - secrethacker.onion";
             this.Load += new System.EventHandler(this.MarketForm_Load_1);

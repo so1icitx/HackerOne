@@ -54,6 +54,8 @@ namespace BlueTeamerRole
             this.buttonBack.Location = new System.Drawing.Point(20, 800);
             this.buttonBack.Size = new System.Drawing.Size(300, 100);
             this.buttonBack.Font = new System.Drawing.Font("Consolas", 18.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -250,6 +252,16 @@ namespace BlueTeamerRole
 
         private void Main_Load_1(object sender, EventArgs e)
         {
+        }
+
+        private void labelmonero_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelRaid_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

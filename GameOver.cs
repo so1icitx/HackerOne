@@ -9,6 +9,9 @@ namespace BlueTeamerRole
         public GameOver(double monero, int hackCount, string currentTarget, List<string> purchasedItems, bool isVictory)
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Bounds = Screen.PrimaryScreen.Bounds;
             var highScore = HighScoreManager.LoadHighScore();
             labelSummary.ForeColor = isVictory ? System.Drawing.Color.LimeGreen : System.Drawing.Color.Red;
             labelSummary.Text = isVictory ? "Victory! Regime Taken Down!" : "Game Over! RAIDED BY ALPHABET BOYS";
@@ -22,6 +25,11 @@ namespace BlueTeamerRole
         private void buttonMenu_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void GameOver_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

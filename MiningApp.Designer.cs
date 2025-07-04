@@ -25,7 +25,7 @@
             // labelMonero
             // 
             this.labelMonero.BackColor = System.Drawing.Color.Black;
-            this.labelMonero.Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMonero.Font = new System.Drawing.Font("Consolas", 19F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMonero.ForeColor = System.Drawing.Color.LimeGreen;
             this.labelMonero.Location = new System.Drawing.Point(36, 31);
             this.labelMonero.Name = "labelMonero";
@@ -36,23 +36,23 @@
             // labelWallet
             // 
             this.labelWallet.BackColor = System.Drawing.Color.Black;
-            this.labelWallet.Font = new System.Drawing.Font("Consolas", 14.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWallet.Font = new System.Drawing.Font("Consolas", 19F, System.Drawing.FontStyle.Bold);
             this.labelWallet.ForeColor = System.Drawing.Color.LimeGreen;
             this.labelWallet.Location = new System.Drawing.Point(36, 80);
             this.labelWallet.Name = "labelWallet";
             this.labelWallet.Size = new System.Drawing.Size(1000, 40);
             this.labelWallet.TabIndex = 1;
-            this.labelWallet.Text = "Wallet: 4AdkWjX8pL2z3qN7mQvT5xY6ZcK9rF1uG2h3jK4mN5pQ6rS7tU8vW9xY0";
+            this.labelWallet.Text = "Wallet: 4AdkWjX8pL2z3qN7mQvT5xY6ZcK9rF1";
             this.labelWallet.Click += new System.EventHandler(this.labelWallet_Click);
             // 
             // buttonBack
             // 
-            this.buttonBack.BackColor = System.Drawing.Color.DarkGray;
+            this.buttonBack.BackColor = System.Drawing.Color.Black;
             this.buttonBack.Font = new System.Drawing.Font("Consolas", 13.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.ForeColor = System.Drawing.Color.LimeGreen;
-            this.buttonBack.Location = new System.Drawing.Point(36, 619);
+            this.buttonBack.ForeColor = System.Drawing.Color.MediumPurple;
+            this.buttonBack.Location = new System.Drawing.Point(36, 934);
             this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(200, 62);
+            this.buttonBack.Size = new System.Drawing.Size(300, 82);
             this.buttonBack.TabIndex = 2;
             this.buttonBack.Text = "Back to Desktop";
             this.buttonBack.UseVisualStyleBackColor = false;
@@ -61,7 +61,7 @@
             // labelMiningRate
             // 
             this.labelMiningRate.BackColor = System.Drawing.Color.Black;
-            this.labelMiningRate.Font = new System.Drawing.Font("Consolas", 14.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMiningRate.Font = new System.Drawing.Font("Consolas", 19F, System.Drawing.FontStyle.Bold);
             this.labelMiningRate.ForeColor = System.Drawing.Color.LimeGreen;
             this.labelMiningRate.Location = new System.Drawing.Point(36, 120);
             this.labelMiningRate.Name = "labelMiningRate";
@@ -75,9 +75,9 @@
             this.listViewPcParts.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewPcParts.ForeColor = System.Drawing.Color.LimeGreen;
             this.listViewPcParts.HideSelection = false;
-            this.listViewPcParts.Location = new System.Drawing.Point(36, 187);
+            this.listViewPcParts.Location = new System.Drawing.Point(36, 250);
             this.listViewPcParts.Name = "listViewPcParts";
-            this.listViewPcParts.Size = new System.Drawing.Size(300, 200);
+            this.listViewPcParts.Size = new System.Drawing.Size(800, 584);
             this.listViewPcParts.TabIndex = 4;
             this.listViewPcParts.UseCompatibleStateImageBehavior = false;
             this.listViewPcParts.View = System.Windows.Forms.View.Details;

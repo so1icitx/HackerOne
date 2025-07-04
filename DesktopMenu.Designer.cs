@@ -19,6 +19,7 @@
             this.buttonTorBrowser = new System.Windows.Forms.Button();
             this.buttonCryptoMining = new System.Windows.Forms.Button();
             this.buttonHighScore = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonValorant
@@ -82,6 +83,17 @@
             this.buttonHighScore.UseVisualStyleBackColor = false;
             this.buttonHighScore.Click += new System.EventHandler(this.buttonHighScore_Click);
             // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::BlueTeamerRole.Properties.Resources.win11;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Location = new System.Drawing.Point(25, 950);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 80);
+            this.button1.TabIndex = 4;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // DesktopMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -90,6 +102,7 @@
             this.BackgroundImage = global::BlueTeamerRole.Properties.Resources.lindows;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1067, 738);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonValorant);
             this.Controls.Add(this.buttonTorBrowser);
             this.Controls.Add(this.buttonCryptoMining);
@@ -106,5 +119,6 @@
         private System.Windows.Forms.Button buttonTorBrowser;
         private System.Windows.Forms.Button buttonCryptoMining;
         private System.Windows.Forms.Button buttonHighScore;
+        private System.Windows.Forms.Button button1;
     }
 }

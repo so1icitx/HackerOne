@@ -8,6 +8,9 @@ namespace BlueTeamerRole
         public MainMenu()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Bounds = Screen.PrimaryScreen.Bounds;
         }
 
         private void mainbutton1_Click(object sender, EventArgs e)
