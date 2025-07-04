@@ -6,69 +6,156 @@ namespace BlueTeamerRole
 {
     public partial class MarketForm : Form
     {
-        private Main mainForm;
-        private List<string> purchasedItems;
+        private GameState gameState;
+        private DesktopMenu desktopMenu;
 
-        public MarketForm(Main main, List<string> purchasedItems)
+        public MarketForm(GameState gameState, DesktopMenu desktop)
         {
             InitializeComponent();
-            mainForm = main;
-            this.purchasedItems = purchasedItems;
-            InitializeMarketItems();
-            UpdateUI();
+            this.gameState = gameState;
+            this.desktopMenu = desktop;
+            this.Load += MarketForm_Load;
+        }
+
+        private void MarketForm_Load(object sender, EventArgs e)
+        {
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Bounds = Screen.PrimaryScreen.Bounds;
-
-            // Custom UI scaling from your code
-            // monero
-            this.labelMonero.Size = new System.Drawing.Size(300, 80);
-            this.labelMonero.Location = new System.Drawing.Point(27, 25);
-            this.labelMonero.Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // listViewMarket
-            this.listViewMarket.Size = new System.Drawing.Size(1200, 500);
-            this.listViewMarket.Location = new System.Drawing.Point(27, 100);
-            this.listViewMarket.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // Back button
-            this.Backbutton.Size = new System.Drawing.Size(250, 80);
-            this.Backbutton.Location = new System.Drawing.Point(27, 750);
-            this.Backbutton.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreateControl(); // Force handle creation
+            InitializeMarketTabs();
+            UpdateUI();
         }
 
-        private void InitializeMarketItems()
+        public new void Show()
         {
-            listViewMarket.Items.Clear();
-            var items = new List<string[]>
+            base.Show();
+            UpdateUI();
+        }
+
+        private void InitializeMarketTabs()
+        {
+            if (listViewVpnProxy == null || listViewDrugs == null || listViewHacks == null || listViewPcParts == null)
             {
-                new[] { "Keylogger", "5 XMR per hack", "70", "Buy" },
-                new[] { "Ransomware", "10 XMR per hack", "200", "Buy" },
-                new[] { "RAT", "25 XMR per hack", "500", "Buy" },
-                new[] { "Zero-Day Exploit", "100 XMR per hack", "1200", "Buy" },
-                new[] { "ProtonVPN", "-5% raid chance", "120", "Buy" },
-                new[] { "NordVPN", "-5% raid chance", "200", "Buy" },
-                new[] { "Mullvad VPN", "-20% raid chance", "500", "Buy" },
-                new[] { "Tor Proxy", "-10% raid chance", "325", "Buy" },
-                new[] { "GPU Rig", "70 XMR/min", "300", "Buy" },
-                new[] { "ASIC Miner", "600 XMR/min", "800", "Buy" }
+                MessageBox.Show("ListView controls are null!");
+                return;
+            }
+
+            listViewVpnProxy.Items.Clear();
+            listViewDrugs.Items.Clear();
+            listViewHacks.Items.Clear();
+            listViewPcParts.Items.Clear();
+
+            foreach (var listView in new[] { listViewVpnProxy, listViewDrugs, listViewHacks, listViewPcParts })
+            {
+                listView.Columns.Clear();
+                listView.Columns.Add("Item", 200);
+                listView.Columns.Add("Effect", 300);
+                listView.Columns.Add("Cost (XMR)", 100);
+                listView.Columns.Add("Action", 100);
+            }
+
+            var vpnProxyItems = new[]
+            {
+                new[] { "ExpressVPN", "-3% raid chance", "80", "Buy" },
+                new[] { "PIA Proxy", "-3% raid chance", "90", "Buy" },
+                new[] { "Surfshark", "-3% raid chance", "70", "Buy" },
+                new[] { "ProtonVPN", "-4% raid chance", "100", "Buy" },
+                new[] { "NordVPN", "-4% raid chance", "130", "Buy" },
+                new[] { "CyberGhost", "-3% raid chance", "110", "Buy" },
+                new[] { "VyprVPN", "-3% raid chance", "100", "Buy" },
+                new[] { "Mullvad VPN", "-10% raid chance", "300", "Buy" },
+                new[] { "Windscribe", "-5% raid chance", "200", "Buy" },
+                new[] { "AirVPN", "-4% raid chance", "150", "Buy" },
+                new[] { "Tor Proxy", "-5% raid chance", "250", "Buy" },
+                new[] { "IPVanish", "-4% raid chance", "180", "Buy" }
+            };
+            var drugItems = new[]
+            {
+                new[] { "Crypto Dust", "+50% hack XMR for 5 hacks", "50", "Buy" },
+                new[] { "Dark Stim", "+50% hack XMR for 5 hacks", "60", "Buy" },
+                new[] { "Neon Haze", "+50% hack XMR for 5 hacks", "55", "Buy" },
+                new[] { "Shadow Root", "+50% hack XMR for 5 hacks", "80", "Buy" },
+                new[] { "Nightshade", "+50% hack XMR for 5 hacks", "90", "Buy" },
+                new[] { "Void Capsule", "+50% hack XMR for 5 hacks", "85", "Buy" },
+                new[] { "Blackout Powder", "+50% hack XMR for 5 hacks", "120", "Buy" },
+                new[] { "Ghost Haze", "+50% hack XMR for 5 hacks", "110", "Buy" },
+                new[] { "Phantom Dust", "+50% hack XMR for 5 hacks", "115", "Buy" },
+                new[] { "Quantum Spike", "+50% hack XMR for 5 hacks", "150", "Buy" },
+                new[] { "Nitro Shard", "+50% hack XMR for 5 hacks", "140", "Buy" },
+                new[] { "Dark Pulse", "+50% hack XMR for 5 hacks", "145", "Buy" }
+            };
+            var hackItems = new[]
+            {
+                new[] { "LockBit", "5 XMR per hack", "120", "Buy" },
+                new[] { "Clop", "7 XMR per hack", "150", "Buy" },
+                new[] { "R蛇", "6 XMR per hack", "130", "Buy" },
+                new[] { "Lumma Stealer", "10 XMR per hack", "250", "Buy" },
+                new[] { "REvil", "12 XMR per hack", "300", "Buy" },
+                new[] { "Egregor", "11 XMR per hack", "270", "Buy" },
+                new[] { "BlackCat", "20 XMR per hack", "400", "Buy" },
+                new[] { "Medusa", "25 XMR per hack", "450", "Buy" },
+                new[] { "Hive", "22 XMR per hack", "420", "Buy" },
+                new[] { "Conti", "50 XMR per hack", "800", "Buy" },
+                new[] { "DarkSide", "40 XMR per hack", "700", "Buy" },
+                new[] { "Locky", "45 XMR per hack", "750", "Buy" }
+            };
+            var pcPartItems = new[]
+            {
+                new[] { "RTX 3060", "8 XMR/10s", "200", "Buy" },
+                new[] { "i5-12400", "5 XMR/10s", "120", "Buy" },
+                new[] { "GTX 1650", "6 XMR/10s", "150", "Buy" },
+                new[] { "Ryzen 7", "10 XMR/10s", "250", "Buy" },
+                new[] { "RTX 3070", "9 XMR/10s", "220", "Buy" },
+                new[] { "i7-12700", "7 XMR/10s", "180", "Buy" },
+                new[] { "RTX 4080", "12 XMR/10s", "350", "Buy" },
+                new[] { "i9-12900K", "10 XMR/10s", "300", "Buy" },
+                new[] { "Ryzen 9", "11 XMR/10s", "320", "Buy" },
+                new[] { "RTX 4090", "15 XMR/10s", "500", "Buy" },
+                new[] { "Threadripper", "12 XMR/10s", "400", "Buy" },
+                new[] { "A100 GPU", "14 XMR/10s", "450", "Buy" }
             };
 
-            foreach (var item in items)
-            {
-                if (!purchasedItems.Contains(item[0]))
-                {
-                    listViewMarket.Items.Add(new ListViewItem(item));
-                }
-            }
+            foreach (var item in vpnProxyItems)
+                if (!gameState.PurchasedItems.Contains(item[0]))
+                    listViewVpnProxy.Items.Add(new ListViewItem(item));
+            foreach (var item in drugItems)
+                if (!gameState.PurchasedItems.Contains(item[0]))
+                    listViewDrugs.Items.Add(new ListViewItem(item));
+            foreach (var item in hackItems)
+                if (!gameState.PurchasedItems.Contains(item[0]))
+                    listViewHacks.Items.Add(new ListViewItem(item));
+            foreach (var item in pcPartItems)
+                if (!gameState.PurchasedItems.Contains(item[0]))
+                    listViewPcParts.Items.Add(new ListViewItem(item));
         }
 
         private void UpdateUI()
         {
-            labelMonero.Text = $"XMR: {mainForm.Monero:F2}";
+            if (InvokeRequired)
+            {
+                Invoke(new Action(UpdateUI));
+                return;
+            }
+
+            if (!IsDisposed && IsHandleCreated && labelMonero != null)
+            {
+                labelMonero.Text = $"XMR: {gameState.Monero:F2}";
+                labelMonero.Invalidate();
+                labelMonero.Update();
+            }
+            else
+            {
+                MessageBox.Show($"MarketForm UI error: Form disposed={IsDisposed}, IsHandleCreated={IsHandleCreated}, labelMonero={(labelMonero == null ? "null" : "not null")}, Monero={gameState.Monero:F2}, Visible={this.Visible}");
+                if (labelMonero != null)
+                    labelMonero.Text = "XMR: Error";
+            }
         }
 
-        private void listViewMarket_MouseClick(object sender, MouseEventArgs e)
+        private void listView_MouseClick(object sender, MouseEventArgs e)
         {
-            var hitTest = listViewMarket.HitTest(e.Location);
+            ListView listView = (ListView)sender;
+            var hitTest = listView.HitTest(e.Location);
             if (hitTest.SubItem != null && hitTest.SubItem.Text == "Buy")
             {
                 var item = hitTest.Item;
@@ -80,55 +167,136 @@ namespace BlueTeamerRole
                     return;
                 }
 
-                if (mainForm.Monero >= cost)
+                if (gameState.Monero >= cost)
                 {
-                    mainForm.Monero -= cost;
-                    purchasedItems.Add(name);
+                    gameState.Monero -= cost;
+                    gameState.PurchasedItems.Add(name);
                     switch (name)
                     {
-                        case "Keylogger":
-                            mainForm.MoneroPerHack = 5.0;
-                            mainForm.CurrentMalware = name;
-                            break;
-                        case "Ransomware":
-                            mainForm.MoneroPerHack = 10.0;
-                            mainForm.CurrentMalware = name;
-                            break;
-                        case "RAT":
-                            mainForm.MoneroPerHack = 25.0;
-                            mainForm.CurrentMalware = name;
-                            break;
-                        case "Zero-Day Exploit":
-                            mainForm.MoneroPerHack = 100.0;
-                            mainForm.CurrentMalware = name;
+                        case "ExpressVPN":
+                        case "PIA Proxy":
+                        case "Surfshark":
+                        case "CyberGhost":
+                        case "VyprVPN":
+                            gameState.RaidChanceReduction += 0.03;
+                            gameState.BaseRaidChance -= 0.03;
                             break;
                         case "ProtonVPN":
-                            mainForm.RaidChanceReduction += 0.05;
-                            mainForm.BaseRaidChance -= 0.05;
-                            break;
-                        case "NordVPN":
-                            mainForm.RaidChanceReduction += 0.05;
-                            mainForm.BaseRaidChance -= 0.05;
+                        case "AirVPN":
+                        case "IPVanish":
+                            gameState.RaidChanceReduction += 0.04;
+                            gameState.BaseRaidChance -= 0.04;
                             break;
                         case "Mullvad VPN":
-                            mainForm.RaidChanceReduction += 0.20;
-                            mainForm.BaseRaidChance -= 0.20;
+                            gameState.RaidChanceReduction += 0.10;
+                            gameState.BaseRaidChance -= 0.10;
                             break;
                         case "Tor Proxy":
-                            mainForm.RaidChanceReduction += 0.10;
-                            mainForm.BaseRaidChance -= 0.10;
+                            gameState.RaidChanceReduction += 0.05;
+                            gameState.BaseRaidChance -= 0.05;
                             break;
-                        case "GPU Rig":
-                            mainForm.MiningRate = 12;
+                        case "Crypto Dust":
+                        case "Dark Stim":
+                        case "Neon Haze":
+                        case "Shadow Root":
+                        case "Nightshade":
+                        case "Void Capsule":
+                        case "Blackout Powder":
+                        case "Ghost Haze":
+                        case "Phantom Dust":
+                        case "Quantum Spike":
+                        case "Nitro Shard":
+                        case "Dark Pulse":
+                            gameState.DrugEffectHacksLeft = 5;
                             break;
-                        case "ASIC Miner":
-                            mainForm.MiningRate = 25;
+                        case "LockBit":
+                            if (gameState.MoneroPerHack < 5.0) gameState.MoneroPerHack = 5.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "Clop":
+                            if (gameState.MoneroPerHack < 7.0) gameState.MoneroPerHack = 7.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "R蛇":
+                            if (gameState.MoneroPerHack < 6.0) gameState.MoneroPerHack = 6.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "Lumma Stealer":
+                            if (gameState.MoneroPerHack < 10.0) gameState.MoneroPerHack = 10.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "REvil":
+                            if (gameState.MoneroPerHack < 12.0) gameState.MoneroPerHack = 12.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "Egregor":
+                            if (gameState.MoneroPerHack < 11.0) gameState.MoneroPerHack = 11.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "BlackCat":
+                            if (gameState.MoneroPerHack < 20.0) gameState.MoneroPerHack = 20.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "Medusa":
+                            if (gameState.MoneroPerHack < 25.0) gameState.MoneroPerHack = 25.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "Hive":
+                            if (gameState.MoneroPerHack < 22.0) gameState.MoneroPerHack = 22.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "Conti":
+                            if (gameState.MoneroPerHack < 50.0) gameState.MoneroPerHack = 50.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "DarkSide":
+                            if (gameState.MoneroPerHack < 40.0) gameState.MoneroPerHack = 40.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "Locky":
+                            if (gameState.MoneroPerHack < 45.0) gameState.MoneroPerHack = 45.0;
+                            gameState.CurrentMalware = name;
+                            break;
+                        case "RTX 3060":
+                            gameState.MiningRate = 8.0;
+                            break;
+                        case "i5-12400":
+                            gameState.MiningRate = 5.0;
+                            break;
+                        case "GTX 1650":
+                            gameState.MiningRate = 6.0;
+                            break;
+                        case "Ryzen 7":
+                            gameState.MiningRate = 10.0;
+                            break;
+                        case "RTX 3070":
+                            gameState.MiningRate = 9.0;
+                            break;
+                        case "i7-12700":
+                            gameState.MiningRate = 7.0;
+                            break;
+                        case "RTX 4080":
+                            gameState.MiningRate = 12.0;
+                            break;
+                        case "i9-12900K":
+                            gameState.MiningRate = 10.0;
+                            break;
+                        case "Ryzen 9":
+                            gameState.MiningRate = 11.0;
+                            break;
+                        case "RTX 4090":
+                            gameState.MiningRate = 15.0;
+                            break;
+                        case "Threadripper":
+                            gameState.MiningRate = 12.0;
+                            break;
+                        case "A100 GPU":
+                            gameState.MiningRate = 14.0;
                             break;
                     }
                     MessageBox.Show($"Purchased {name}!");
                     UpdateUI();
-                    mainForm.RefreshUI();
-                    listViewMarket.Items.Remove(item);
+                    listView.Items.Remove(item);
                 }
                 else
                 {
@@ -139,12 +307,21 @@ namespace BlueTeamerRole
 
         private void Backbutton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
+            if (desktopMenu != null && !desktopMenu.IsDisposed)
+            {
+                desktopMenu.Show();
+            }
+            else
+            {
+                desktopMenu = new DesktopMenu();
+                desktopMenu.FormClosed += (s, args) => Application.Exit();
+                desktopMenu.Show();
+            }
         }
 
-        private void MarketForm_Load(object sender, EventArgs e)
+        private void MarketForm_Load_1(object sender, EventArgs e)
         {
-            // Empty; initialization handled in constructor
         }
     }
 }

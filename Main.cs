@@ -6,76 +6,81 @@ namespace BlueTeamerRole
 {
     public partial class Main : Form
     {
-        private double monero = 100.0;
-        private string currentMalware = "Phishing Email";
-        private double moneroPerHack = 2.0;
+        private GameState gameState;
+        private DesktopMenu desktopMenu;
+        private double totalMined = 0.0;
         private string currentTarget = "Public Servers";
-        private int hacksToNextTarget = 100;
+        private int hacksToNextTarget = 50;
         private int hackCount = 0;
-        private double baseRaidChance = 0.01;
-        private double miningRate = 7.0;
-        private double raidChanceReduction = 0.0; // New field to track total raid chance reduction
+        private double tempRaidChanceMod = 0.0;
+        private double tempMiningBoost = 1.0;
+        private int tempMiningTicks = 0;
+        private int raidWarnings = 0;
+        private double moneroMultiplier = 1.0;
         private Random random = new Random();
         private Timer miningTimer;
-        private List<string> purchasedItems = new List<string>();
 
-        public double Monero { get { return monero; } set { monero = value; } }
-        public double MoneroPerHack { get { return moneroPerHack; } set { moneroPerHack = value; } }
-        public string CurrentMalware { get { return currentMalware; } set { currentMalware = value; } }
-        public double BaseRaidChance { get { return baseRaidChance; } set { baseRaidChance = Math.Max(0, value); } }
-        public double MiningRate { get { return miningRate; } set { miningRate = value; } }
-        public double RaidChanceReduction { get { return raidChanceReduction; } set { raidChanceReduction = value; } } // New property
-        public List<string> PurchasedItems { get { return purchasedItems; } }
+        public TextBox TxtTerminal { get { return txtTerminal; } }
 
-        public Main()
+        private double GetMinRaidChance()
+        {
+            if (currentTarget == "Public Servers") return 0.005;
+            if (currentTarget == "Corporate Networks") return 0.05;
+            if (currentTarget == "Alphabet Boys") return 0.10;
+            return 0.15;
+        }
+
+        public Main(GameState gameState, DesktopMenu desktop)
         {
             InitializeComponent();
+            this.gameState = gameState;
+            desktopMenu = desktop;
             miningTimer = new Timer();
             miningTimer.Interval = 10000;
             miningTimer.Tick += MiningTimer_Tick;
             miningTimer.Start();
+            this.KeyPreview = true;
+            this.KeyDown += Main_KeyDown;
+            this.FormClosing += Main_FormClosing;
+            this.Load += Main_Load;
             UpdateUI();
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Bounds = Screen.PrimaryScreen.Bounds;
+            this.buttonBack.Location = new System.Drawing.Point(20, 800);
+            this.buttonBack.Size = new System.Drawing.Size(300, 100);
+            this.buttonBack.Font = new System.Drawing.Font("Consolas", 18.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
 
-            // Custom UI scaling from your code
-            this.buttonMarket.Font = new System.Drawing.Font("Consolas", 13.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMarket.Location = new System.Drawing.Point(20, 720);
-            this.buttonMarket.Size = new System.Drawing.Size(300, 100);
-            // monero
-            this.labelmonero.Size = new System.Drawing.Size(300, 80);
-            this.labelmonero.Location = new System.Drawing.Point(27, 25);
-            this.labelmonero.Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // target
-            this.labeltarget.Size = new System.Drawing.Size(300, 80);
-            this.labeltarget.Location = new System.Drawing.Point(20, 70);
-            this.labeltarget.Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // raid chance
-            this.labelRaid.Size = new System.Drawing.Size(300, 80);
-            this.labelRaid.Location = new System.Drawing.Point(20, 115);
-            this.labelRaid.Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // progress bar
-            this.progressTarget.Size = new System.Drawing.Size(400, 25);
-            this.progressTarget.Location = new System.Drawing.Point(27, 160);
-            this.progressTarget.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            // terminal
-            this.txtTerminal.Size = new System.Drawing.Size(1500, 245);
-            this.txtTerminal.Location = new System.Drawing.Point(27, 200);
-            this.txtTerminal.Font = new System.Drawing.Font("Consolas", 14.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // hack button
-            this.buttonHack.Font = new System.Drawing.Font("Consolas", 20.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonHack.Location = new System.Drawing.Point(350, 450);
-            this.buttonHack.Size = new System.Drawing.Size(800, 120);
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            miningTimer.Stop();
+        }
+
+        private void Main_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                miningTimer.Stop();
+                Application.Exit();
+            }
         }
 
         private void UpdateUI()
         {
-            labelmonero.Text = $"XMR: {monero:F2}";
-            labeltarget.Text = $"Target: {currentTarget}";
-            labelRaid.Text = $"Raid Chance: {(baseRaidChance * 100):F0}%";
-            progressTarget.Value = hackCount;
-            progressTarget.Maximum = hacksToNextTarget;
+            if (!this.IsDisposed && IsHandleCreated)
+            {
+                labelmonero.Text = $"XMR: {gameState.Monero:F2}";
+                labeltarget.Text = $"Target: {currentTarget}";
+                labelRaid.Text = $"Raid Chance: {((gameState.BaseRaidChance + tempRaidChanceMod) * 100):F1}% | Warnings: {raidWarnings}/3";
+                progressTarget.Value = Math.Min(hackCount, hacksToNextTarget);
+                progressTarget.Maximum = hacksToNextTarget;
+                txtTerminal.ScrollToCaret();
+            }
         }
 
         public void RefreshUI()
@@ -83,24 +88,69 @@ namespace BlueTeamerRole
             UpdateUI();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonHack_Click(object sender, EventArgs e)
         {
-            monero += moneroPerHack;
+            double hackReward = gameState.MoneroPerHack * moneroMultiplier * (gameState.DrugEffectHacksLeft > 0 ? 1.5 : 1.0);
+            if (hackCount >= hacksToNextTarget / 2) hackReward *= 0.8;
+            gameState.Monero += hackReward;
             hackCount++;
-            txtTerminal.AppendText($"Sending {currentMalware}... Success! +{moneroPerHack:F2} XMR\r\n");
-            if (random.NextDouble() < baseRaidChance)
+            if (!this.IsDisposed && IsHandleCreated)
+                txtTerminal.AppendText($"Sending {gameState.CurrentMalware}... Success! +{hackReward:F2} XMR\r\n");
+            if (gameState.DrugEffectHacksLeft > 0)
             {
-                txtTerminal.AppendText("RAID DETECTED! Game Over!\r\n");
-                miningTimer.Stop();
-                GameOver gameOverForm = new GameOver(monero, hackCount, currentTarget, purchasedItems);
-                gameOverForm.FormClosed += (s, args) => this.Close();
-                gameOverForm.Show();
-                return;
+                gameState.DrugEffectHacksLeft--;
+                if (gameState.DrugEffectHacksLeft == 0 && !this.IsDisposed && IsHandleCreated)
+                    txtTerminal.AppendText("Drug effect expired!\r\n");
             }
+
+            if (hackCount % 10 == 0)
+            {
+                double eventChance = random.NextDouble();
+                if (eventChance < 0.15)
+                {
+                    gameState.Monero += 50;
+                    if (!this.IsDisposed && IsHandleCreated)
+                        txtTerminal.AppendText("Dark Web Bonus: +50 XMR!\r\n");
+                }
+                else if (eventChance < 0.30)
+                {
+                    tempRaidChanceMod = 0.05;
+                    if (!this.IsDisposed && IsHandleCreated)
+                        txtTerminal.AppendText("Firewall Alert: +5% raid chance for 10 hacks!\r\n");
+                }
+                else if (eventChance < 0.45)
+                {
+                    tempMiningBoost = 2.0;
+                    tempMiningTicks = 5;
+                    if (!this.IsDisposed && IsHandleCreated)
+                        txtTerminal.AppendText("Overclock Boost: 2x mining rate for 50 seconds!\r\n");
+                }
+            }
+
             if (hackCount >= hacksToNextTarget)
             {
                 ProgressToNextTarget();
+                return;
             }
+
+            if (random.NextDouble() < gameState.BaseRaidChance + tempRaidChanceMod)
+            {
+                gameState.Monero *= 0.95;
+                raidWarnings++;
+                if (!this.IsDisposed && IsHandleCreated)
+                    txtTerminal.AppendText($"RAID DETECTED! Lost 5% XMR! Warning {raidWarnings}/3\r\n");
+                if (raidWarnings >= 3)
+                {
+                    miningTimer.Stop();
+                    HighScoreManager.SaveHighScore(gameState.Monero, hackCount, currentTarget);
+                    GameOver gameOverForm = new GameOver(gameState.Monero, hackCount, currentTarget, gameState.PurchasedItems, false);
+                    gameOverForm.FormClosed += (s, args) => Application.Exit();
+                    gameOverForm.Show();
+                    this.Hide();
+                    return;
+                }
+            }
+            if (hackCount % 10 == 0) tempRaidChanceMod = 0.0;
             UpdateUI();
         }
 
@@ -110,53 +160,96 @@ namespace BlueTeamerRole
             if (currentTarget == "Public Servers")
             {
                 currentTarget = "Corporate Networks";
-                hacksToNextTarget = 150;
-                baseRaidChance = 0.11 - raidChanceReduction; // Apply reduction after setting base value
+                hacksToNextTarget = 60;
+                gameState.BaseRaidChance = 0.10 - gameState.RaidChanceReduction;
+                if (!this.IsDisposed && IsHandleCreated)
+                    txtTerminal.AppendText("Progressed to Corporate Networks!\r\n");
             }
             else if (currentTarget == "Corporate Networks")
             {
                 currentTarget = "Alphabet Boys";
-                hacksToNextTarget = 215;
-                baseRaidChance = 0.25 - raidChanceReduction; // Apply reduction after setting base value
+                hacksToNextTarget = 70;
+                gameState.BaseRaidChance = 0.20 - gameState.RaidChanceReduction;
+                if (!this.IsDisposed && IsHandleCreated)
+                    txtTerminal.AppendText("Progressed to Alphabet Boys!\r\n");
             }
             else if (currentTarget == "Alphabet Boys")
             {
                 currentTarget = "Elite Hackers";
-                hacksToNextTarget = 300;
-                baseRaidChance = 0.40 - raidChanceReduction; // Apply reduction after setting base value
+                hacksToNextTarget = 80;
+                gameState.BaseRaidChance = 0.30 - gameState.RaidChanceReduction;
+                if (!this.IsDisposed && IsHandleCreated)
+                    txtTerminal.AppendText("Progressed to Elite Hackers!\r\n");
             }
             else
             {
-                txtTerminal.AppendText("All targets hacked! You’ve taken down the regime!\r\n");
+                if (!this.IsDisposed && IsHandleCreated)
+                    txtTerminal.AppendText("All targets hacked! You’ve taken down the regime!\r\n");
                 miningTimer.Stop();
-                GameOver gameOverForm = new GameOver(monero, hackCount, currentTarget, purchasedItems);
-                gameOverForm.FormClosed += (s, args) => this.Close();
+                HighScoreManager.SaveHighScore(gameState.Monero, hackCount, currentTarget);
+                GameOver gameOverForm = new GameOver(gameState.Monero, hackCount, currentTarget, gameState.PurchasedItems, true);
+                gameOverForm.FormClosed += (s, args) => Application.Exit();
                 gameOverForm.Show();
+                this.Hide();
+                return;
             }
             UpdateUI();
         }
 
         private void MiningTimer_Tick(object sender, EventArgs e)
         {
-            monero += miningRate;
-            txtTerminal.AppendText($"Mined {miningRate:F2} XMR\r\n");
-            UpdateUI();
+            if (!this.IsDisposed && IsHandleCreated)
+            {
+                double mined = gameState.MiningRate * tempMiningBoost;
+                gameState.Monero += mined;
+                totalMined += mined;
+                txtTerminal.AppendText($"Mined {mined:F2} XMR\r\n");
+                if (tempMiningBoost > 1.0)
+                {
+                    tempMiningTicks--;
+                    if (tempMiningTicks <= 0)
+                    {
+                        tempMiningBoost = 1.0;
+                        txtTerminal.AppendText("Overclock Boost expired!\r\n");
+                    }
+                }
+                UpdateUI();
+            }
         }
 
         private void buttonMarket_Click(object sender, EventArgs e)
         {
-            MarketForm marketForm = new MarketForm(this, purchasedItems);
+            miningTimer.Stop();
+            MarketForm marketForm = new MarketForm(gameState, desktopMenu);
+            marketForm.FormClosed += (s, args) => { if (!this.IsDisposed) { this.Show(); miningTimer.Start(); } };
             marketForm.Show();
+            this.Hide();
         }
 
-        private void buttonMenu_Click(object sender, EventArgs e)
+        private void buttonBack_Click(object sender, EventArgs e)
         {
-            this.Close();
+            miningTimer.Stop();
+            this.Hide();
+            if (desktopMenu != null && !desktopMenu.IsDisposed)
+            {
+                desktopMenu.Show();
+            }
+            else
+            {
+                desktopMenu = new DesktopMenu();
+                desktopMenu.FormClosed += (s, args) => Application.Exit();
+                desktopMenu.Show();
+            }
         }
 
-        private void Main_Load(object sender, EventArgs e)
+        private void buttonExit_Click(object sender, EventArgs e)
         {
-            // Empty; initialization handled in constructor
+            miningTimer.Stop();
+            Application.Exit();
+        }
+
+        private void Main_Load_1(object sender, EventArgs e)
+        {
         }
     }
 }
