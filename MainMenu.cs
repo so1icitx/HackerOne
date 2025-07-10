@@ -15,10 +15,10 @@ namespace BlueTeamerRole
 
         private void mainbutton1_Click(object sender, EventArgs e)
         {
-            DesktopMenu desktopForm = new DesktopMenu();
+            StoryForm storyForm = new StoryForm();
+            storyForm.FormClosed += (s, args) => this.Close();
+            storyForm.Show();
             this.Hide();
-            desktopForm.FormClosed += (s, args) => this.Show();
-            desktopForm.Show();
         }
 
         private void mainbutton2_Click(object sender, EventArgs e)

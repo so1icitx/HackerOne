@@ -6,12 +6,10 @@ namespace BlueTeamerRole
     public partial class DesktopMenu : Form
     {
         private Main mainForm;
-        private GameState gameState;
 
         public DesktopMenu()
         {
             InitializeComponent();
-            gameState = new GameState();
             this.Load += DesktopMenu_Load;
         }
 
@@ -27,7 +25,7 @@ namespace BlueTeamerRole
         {
             if (mainForm == null || mainForm.IsDisposed)
             {
-                mainForm = new Main(gameState, this);
+                mainForm = new Main(this);
                 mainForm.FormClosed += (s, args) => this.Close();
             }
             this.Hide();
@@ -38,7 +36,7 @@ namespace BlueTeamerRole
         {
             if (mainForm == null || mainForm.IsDisposed)
             {
-                mainForm = new Main(gameState, this);
+                mainForm = new Main(this);
                 mainForm.FormClosed += (s, args) => this.Close();
             }
 
@@ -84,7 +82,7 @@ namespace BlueTeamerRole
                 if (mainForm != null && !mainForm.IsDisposed)
                 {
                     mainForm.TxtTerminal.AppendText("Connected to secrethacker.onion\r\n");
-                    MarketForm marketForm = new MarketForm(gameState, this);
+                    MarketForm marketForm = new MarketForm(this);
                     marketForm.FormClosed += (s2, args2) =>
                     {
                         if (!mainForm.IsDisposed)
@@ -114,9 +112,6 @@ namespace BlueTeamerRole
                 goButton.Location = new System.Drawing.Point(1070, 400);
                 backButton.Size = new System.Drawing.Size(300, 82);
                 backButton.Location = new System.Drawing.Point(27, 730);
-
-                
-
             };
             torForm.Controls.Add(searchBar);
             torForm.Controls.Add(goButton);
@@ -130,10 +125,10 @@ namespace BlueTeamerRole
         {
             if (mainForm == null || mainForm.IsDisposed)
             {
-                mainForm = new Main(gameState, this);
+                mainForm = new Main(this);
                 mainForm.FormClosed += (s, args) => this.Close();
             }
-            MiningApp miningForm = new MiningApp(gameState, this);
+            MiningApp miningForm = new MiningApp(this);
             miningForm.FormClosed += (s, args) => this.Show();
             miningForm.Show();
             this.Hide();

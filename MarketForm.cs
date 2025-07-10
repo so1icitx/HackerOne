@@ -6,13 +6,11 @@ namespace BlueTeamerRole
 {
     public partial class MarketForm : Form
     {
-        private GameState gameState;
         private DesktopMenu desktopMenu;
 
-        public MarketForm(GameState gameState, DesktopMenu desktop)
+        public MarketForm(DesktopMenu desktop)
         {
             InitializeComponent();
-            this.gameState = gameState;
             this.desktopMenu = desktop;
             this.Load += MarketForm_Load;
         }
@@ -117,16 +115,16 @@ namespace BlueTeamerRole
             };
 
             foreach (var item in vpnProxyItems)
-                if (!gameState.PurchasedItems.Contains(item[0]))
+                if (!GameState.PurchasedItems.Contains(item[0]))
                     listViewVpnProxy.Items.Add(new ListViewItem(item));
             foreach (var item in drugItems)
-                if (!gameState.PurchasedItems.Contains(item[0]))
+                if (!GameState.PurchasedItems.Contains(item[0]))
                     listViewDrugs.Items.Add(new ListViewItem(item));
             foreach (var item in hackItems)
-                if (!gameState.PurchasedItems.Contains(item[0]))
+                if (!GameState.PurchasedItems.Contains(item[0]))
                     listViewHacks.Items.Add(new ListViewItem(item));
             foreach (var item in pcPartItems)
-                if (!gameState.PurchasedItems.Contains(item[0]))
+                if (!GameState.PurchasedItems.Contains(item[0]))
                     listViewPcParts.Items.Add(new ListViewItem(item));
         }
 
@@ -140,16 +138,22 @@ namespace BlueTeamerRole
 
             if (!IsDisposed && IsHandleCreated && labelMonero != null)
             {
-                labelMonero.Text = $"XMR: {gameState.Monero:F2}";
-                labelMonero.Invalidate();
+                // Increase label size to handle larger numbers
+                labelMonero.Size = new System.Drawing.Size(300, 50);
+                labelMonero.Location = new System.Drawing.Point(50, 50); // Moved to avoid overlap
+                labelMonero.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold);
+                labelMonero.ForeColor = System.Drawing.Color.LimeGreen;
+                labelMonero.Text = $"XMR: {GameState.Monero:F2}";
+                labelMonero.Refresh();
                 labelMonero.Update();
+                labelMonero.Invalidate();
+                System.Diagnostics.Debug.WriteLine($"MarketForm UpdateUI: XMR={GameState.Monero:F2}, labelMonero.Text={labelMonero.Text}");
             }
             else
             {
-                labelMonero.Text = $"XMR: {gameState.Monero:F2}";
-                labelMonero.Invalidate();
-                labelMonero.Update();
-
+                string debugMsg = $"MarketForm UI error: IsDisposed={IsDisposed}, IsHandleCreated={IsHandleCreated}, labelMonero={(labelMonero == null ? "null" : "not null")}";
+                System.Diagnostics.Debug.WriteLine(debugMsg);
+                MessageBox.Show(debugMsg);
             }
         }
 
@@ -168,10 +172,10 @@ namespace BlueTeamerRole
                     return;
                 }
 
-                if (gameState.Monero >= cost)
+                if (GameState.Monero >= cost)
                 {
-                    gameState.Monero -= cost;
-                    gameState.PurchasedItems.Add(name);
+                    GameState.Monero -= cost;
+                    GameState.PurchasedItems.Add(name);
                     switch (name)
                     {
                         case "ExpressVPN":
@@ -179,22 +183,23 @@ namespace BlueTeamerRole
                         case "Surfshark":
                         case "CyberGhost":
                         case "VyprVPN":
-                            gameState.RaidChanceReduction += 0.03;
-                            gameState.BaseRaidChance -= 0.03;
+                            GameState.RaidChanceReduction += 0.03;
+                            GameState.BaseRaidChance = Math.Max(0.005, GameState.BaseRaidChance - 0.03);
                             break;
                         case "ProtonVPN":
                         case "AirVPN":
                         case "IPVanish":
-                            gameState.RaidChanceReduction += 0.04;
-                            gameState.BaseRaidChance -= 0.04;
+                            GameState.RaidChanceReduction += 0.04;
+                            GameState.BaseRaidChance = Math.Max(0.005, GameState.BaseRaidChance - 0.04);
                             break;
                         case "Mullvad VPN":
-                            gameState.RaidChanceReduction += 0.10;
-                            gameState.BaseRaidChance -= 0.10;
+                            GameState.RaidChanceReduction += 0.10;
+                            GameState.BaseRaidChance = Math.Max(0.005, GameState.BaseRaidChance - 0.10);
                             break;
+                        case "Windscribe":
                         case "Tor Proxy":
-                            gameState.RaidChanceReduction += 0.05;
-                            gameState.BaseRaidChance -= 0.05;
+                            GameState.RaidChanceReduction += 0.05;
+                            GameState.BaseRaidChance = Math.Max(0.005, GameState.BaseRaidChance - 0.05);
                             break;
                         case "Crypto Dust":
                         case "Dark Stim":
@@ -208,94 +213,94 @@ namespace BlueTeamerRole
                         case "Quantum Spike":
                         case "Nitro Shard":
                         case "Dark Pulse":
-                            gameState.DrugEffectHacksLeft = 5;
+                            GameState.DrugEffectHacksLeft = 5;
                             break;
                         case "LockBit":
-                            if (gameState.MoneroPerHack < 5.0) gameState.MoneroPerHack = 5.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 5.0) GameState.MoneroPerHack = 5.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "Clop":
-                            if (gameState.MoneroPerHack < 7.0) gameState.MoneroPerHack = 7.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 7.0) GameState.MoneroPerHack = 7.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "R蛇":
-                            if (gameState.MoneroPerHack < 6.0) gameState.MoneroPerHack = 6.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 6.0) GameState.MoneroPerHack = 6.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "Lumma Stealer":
-                            if (gameState.MoneroPerHack < 10.0) gameState.MoneroPerHack = 10.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 10.0) GameState.MoneroPerHack = 10.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "REvil":
-                            if (gameState.MoneroPerHack < 12.0) gameState.MoneroPerHack = 12.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 12.0) GameState.MoneroPerHack = 12.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "Egregor":
-                            if (gameState.MoneroPerHack < 11.0) gameState.MoneroPerHack = 11.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 11.0) GameState.MoneroPerHack = 11.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "BlackCat":
-                            if (gameState.MoneroPerHack < 20.0) gameState.MoneroPerHack = 20.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 20.0) GameState.MoneroPerHack = 20.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "Medusa":
-                            if (gameState.MoneroPerHack < 25.0) gameState.MoneroPerHack = 25.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 25.0) GameState.MoneroPerHack = 25.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "Hive":
-                            if (gameState.MoneroPerHack < 22.0) gameState.MoneroPerHack = 22.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 22.0) GameState.MoneroPerHack = 22.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "Conti":
-                            if (gameState.MoneroPerHack < 50.0) gameState.MoneroPerHack = 50.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 50.0) GameState.MoneroPerHack = 50.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "DarkSide":
-                            if (gameState.MoneroPerHack < 40.0) gameState.MoneroPerHack = 40.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 40.0) GameState.MoneroPerHack = 40.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "Locky":
-                            if (gameState.MoneroPerHack < 45.0) gameState.MoneroPerHack = 45.0;
-                            gameState.CurrentMalware = name;
+                            if (GameState.MoneroPerHack < 45.0) GameState.MoneroPerHack = 45.0;
+                            GameState.CurrentMalware = name;
                             break;
                         case "RTX 3060":
-                            gameState.MiningRate = 8.0;
+                            GameState.MiningRate = 8.0;
                             break;
                         case "i5-12400":
-                            gameState.MiningRate = 5.0;
+                            GameState.MiningRate = 5.0;
                             break;
                         case "GTX 1650":
-                            gameState.MiningRate = 6.0;
+                            GameState.MiningRate = 6.0;
                             break;
                         case "Ryzen 7":
-                            gameState.MiningRate = 10.0;
+                            GameState.MiningRate = 10.0;
                             break;
                         case "RTX 3070":
-                            gameState.MiningRate = 9.0;
+                            GameState.MiningRate = 9.0;
                             break;
                         case "i7-12700":
-                            gameState.MiningRate = 7.0;
+                            GameState.MiningRate = 7.0;
                             break;
                         case "RTX 4080":
-                            gameState.MiningRate = 12.0;
+                            GameState.MiningRate = 12.0;
                             break;
                         case "i9-12900K":
-                            gameState.MiningRate = 10.0;
+                            GameState.MiningRate = 10.0;
                             break;
                         case "Ryzen 9":
-                            gameState.MiningRate = 11.0;
+                            GameState.MiningRate = 11.0;
                             break;
                         case "RTX 4090":
-                            gameState.MiningRate = 15.0;
+                            GameState.MiningRate = 15.0;
                             break;
                         case "Threadripper":
-                            gameState.MiningRate = 12.0;
+                            GameState.MiningRate = 12.0;
                             break;
                         case "A100 GPU":
-                            gameState.MiningRate = 14.0;
+                            GameState.MiningRate = 14.0;
                             break;
                     }
-                    MessageBox.Show($"Purchased {name}!");
+                    MessageBox.Show($"Purchased {name}! Raid Chance Reduction: {GameState.RaidChanceReduction:F2}%");
                     UpdateUI();
                     listView.Items.Remove(item);
                 }
@@ -327,7 +332,6 @@ namespace BlueTeamerRole
 
         private void listViewVpnProxy_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

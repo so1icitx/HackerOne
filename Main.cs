@@ -6,7 +6,6 @@ namespace BlueTeamerRole
 {
     public partial class Main : Form
     {
-        private GameState gameState;
         private DesktopMenu desktopMenu;
         private double totalMined = 0.0;
         private string currentTarget = "Public Servers";
@@ -30,10 +29,9 @@ namespace BlueTeamerRole
             return 0.15;
         }
 
-        public Main(GameState gameState, DesktopMenu desktop)
+        public Main(DesktopMenu desktop)
         {
             InitializeComponent();
-            this.gameState = gameState;
             desktopMenu = desktop;
             miningTimer = new Timer();
             miningTimer.Interval = 10000;
@@ -54,8 +52,6 @@ namespace BlueTeamerRole
             this.buttonBack.Location = new System.Drawing.Point(20, 800);
             this.buttonBack.Size = new System.Drawing.Size(300, 100);
             this.buttonBack.Font = new System.Drawing.Font("Consolas", 18.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-
-
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -76,9 +72,9 @@ namespace BlueTeamerRole
         {
             if (!this.IsDisposed && IsHandleCreated)
             {
-                labelmonero.Text = $"XMR: {gameState.Monero:F2}";
+                labelmonero.Text = $"XMR: {GameState.Monero:F2}";
                 labeltarget.Text = $"Target: {currentTarget}";
-                labelRaid.Text = $"Raid Chance: {((gameState.BaseRaidChance + tempRaidChanceMod) * 100):F1}% | Warnings: {raidWarnings}/3";
+                labelRaid.Text = $"Raid Chance: {((GameState.BaseRaidChance + tempRaidChanceMod) * 100):F1}% | Warnings: {raidWarnings}/3";
                 progressTarget.Value = Math.Min(hackCount, hacksToNextTarget);
                 progressTarget.Maximum = hacksToNextTarget;
                 txtTerminal.ScrollToCaret();
@@ -92,16 +88,16 @@ namespace BlueTeamerRole
 
         private void buttonHack_Click(object sender, EventArgs e)
         {
-            double hackReward = gameState.MoneroPerHack * moneroMultiplier * (gameState.DrugEffectHacksLeft > 0 ? 1.5 : 1.0);
+            double hackReward = GameState.MoneroPerHack * moneroMultiplier * (GameState.DrugEffectHacksLeft > 0 ? 1.5 : 1.0);
             if (hackCount >= hacksToNextTarget / 2) hackReward *= 0.8;
-            gameState.Monero += hackReward;
+            GameState.Monero += hackReward;
             hackCount++;
             if (!this.IsDisposed && IsHandleCreated)
-                txtTerminal.AppendText($"Sending {gameState.CurrentMalware}... Success! +{hackReward:F2} XMR\r\n");
-            if (gameState.DrugEffectHacksLeft > 0)
+                txtTerminal.AppendText($"Sending {GameState.CurrentMalware}... Success! +{hackReward:F2} XMR\r\n");
+            if (GameState.DrugEffectHacksLeft > 0)
             {
-                gameState.DrugEffectHacksLeft--;
-                if (gameState.DrugEffectHacksLeft == 0 && !this.IsDisposed && IsHandleCreated)
+                GameState.DrugEffectHacksLeft--;
+                if (GameState.DrugEffectHacksLeft == 0 && !this.IsDisposed && IsHandleCreated)
                     txtTerminal.AppendText("Drug effect expired!\r\n");
             }
 
@@ -110,7 +106,7 @@ namespace BlueTeamerRole
                 double eventChance = random.NextDouble();
                 if (eventChance < 0.15)
                 {
-                    gameState.Monero += 50;
+                    GameState.Monero += 50;
                     if (!this.IsDisposed && IsHandleCreated)
                         txtTerminal.AppendText("Dark Web Bonus: +50 XMR!\r\n");
                 }
@@ -135,17 +131,17 @@ namespace BlueTeamerRole
                 return;
             }
 
-            if (random.NextDouble() < gameState.BaseRaidChance + tempRaidChanceMod)
+            if (random.NextDouble() < GameState.BaseRaidChance + tempRaidChanceMod)
             {
-                gameState.Monero *= 0.95;
+                GameState.Monero *= 0.95;
                 raidWarnings++;
                 if (!this.IsDisposed && IsHandleCreated)
                     txtTerminal.AppendText($"RAID DETECTED! Lost 5% XMR! Warning {raidWarnings}/3\r\n");
                 if (raidWarnings >= 3)
                 {
                     miningTimer.Stop();
-                    HighScoreManager.SaveHighScore(gameState.Monero, hackCount, currentTarget);
-                    GameOver gameOverForm = new GameOver(gameState.Monero, hackCount, currentTarget, gameState.PurchasedItems, false);
+                    HighScoreManager.SaveHighScore(GameState.Monero, hackCount, currentTarget);
+                    GameOver gameOverForm = new GameOver(GameState.Monero, hackCount, currentTarget, GameState.PurchasedItems, false);
                     gameOverForm.FormClosed += (s, args) => Application.Exit();
                     gameOverForm.Show();
                     this.Hide();
@@ -163,7 +159,7 @@ namespace BlueTeamerRole
             {
                 currentTarget = "Corporate Networks";
                 hacksToNextTarget = 60;
-                gameState.BaseRaidChance = 0.10 - gameState.RaidChanceReduction;
+                GameState.BaseRaidChance = 0.10 - GameState.RaidChanceReduction;
                 if (!this.IsDisposed && IsHandleCreated)
                     txtTerminal.AppendText("Progressed to Corporate Networks!\r\n");
             }
@@ -171,7 +167,7 @@ namespace BlueTeamerRole
             {
                 currentTarget = "Alphabet Boys";
                 hacksToNextTarget = 70;
-                gameState.BaseRaidChance = 0.20 - gameState.RaidChanceReduction;
+                GameState.BaseRaidChance = 0.20 - GameState.RaidChanceReduction;
                 if (!this.IsDisposed && IsHandleCreated)
                     txtTerminal.AppendText("Progressed to Alphabet Boys!\r\n");
             }
@@ -179,7 +175,7 @@ namespace BlueTeamerRole
             {
                 currentTarget = "Elite Hackers";
                 hacksToNextTarget = 80;
-                gameState.BaseRaidChance = 0.30 - gameState.RaidChanceReduction;
+                GameState.BaseRaidChance = 0.30 - GameState.RaidChanceReduction;
                 if (!this.IsDisposed && IsHandleCreated)
                     txtTerminal.AppendText("Progressed to Elite Hackers!\r\n");
             }
@@ -188,8 +184,8 @@ namespace BlueTeamerRole
                 if (!this.IsDisposed && IsHandleCreated)
                     txtTerminal.AppendText("All targets hacked! You’ve taken down the regime!\r\n");
                 miningTimer.Stop();
-                HighScoreManager.SaveHighScore(gameState.Monero, hackCount, currentTarget);
-                GameOver gameOverForm = new GameOver(gameState.Monero, hackCount, currentTarget, gameState.PurchasedItems, true);
+                HighScoreManager.SaveHighScore(GameState.Monero, hackCount, currentTarget);
+                GameOver gameOverForm = new GameOver(GameState.Monero, hackCount, currentTarget, GameState.PurchasedItems, true);
                 gameOverForm.FormClosed += (s, args) => Application.Exit();
                 gameOverForm.Show();
                 this.Hide();
@@ -202,8 +198,8 @@ namespace BlueTeamerRole
         {
             if (!this.IsDisposed && IsHandleCreated)
             {
-                double mined = gameState.MiningRate * tempMiningBoost;
-                gameState.Monero += mined;
+                double mined = GameState.MiningRate * tempMiningBoost;
+                GameState.Monero += mined;
                 totalMined += mined;
                 txtTerminal.AppendText($"Mined {mined:F2} XMR\r\n");
                 if (tempMiningBoost > 1.0)
@@ -222,7 +218,7 @@ namespace BlueTeamerRole
         private void buttonMarket_Click(object sender, EventArgs e)
         {
             miningTimer.Stop();
-            MarketForm marketForm = new MarketForm(gameState, desktopMenu);
+            MarketForm marketForm = new MarketForm(desktopMenu);
             marketForm.FormClosed += (s, args) => { if (!this.IsDisposed) { this.Show(); miningTimer.Start(); } };
             marketForm.Show();
             this.Hide();
@@ -256,12 +252,10 @@ namespace BlueTeamerRole
 
         private void labelmonero_Click(object sender, EventArgs e)
         {
-
         }
 
         private void labelRaid_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

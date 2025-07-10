@@ -7,12 +7,10 @@ namespace BlueTeamerRole
 {
     public partial class MiningApp : Form
     {
-        private GameState gameState;
         private DesktopMenu desktopMenu;
 
-        public MiningApp(GameState gameState, DesktopMenu desktopMenu = null)
+        public MiningApp(DesktopMenu desktopMenu = null)
         {
-            this.gameState = gameState;
             this.desktopMenu = desktopMenu;
             InitializeComponent();
             this.Shown += MiningApp_Shown;
@@ -41,8 +39,9 @@ namespace BlueTeamerRole
 
             if (!IsDisposed && IsHandleCreated && labelMonero != null && labelWallet != null && labelMiningRate != null && listViewPcParts != null)
             {
-                labelMonero.Text = $"XMR: {gameState.Monero:F2}";
-                labelMiningRate.Text = $"Mining Rate: {(gameState.MiningRate * 6):F2}  XMR/min";
+                labelMonero.Text = $"XMR: {GameState.Monero:F2}";
+                labelWallet.Text = $"Wallet: {GameState.WalletAddress}";
+                labelMiningRate.Text = $"Mining Rate: {(GameState.MiningRate * 6):F2} XMR/min";
                 labelMonero.Refresh();
                 labelWallet.Refresh();
                 labelMiningRate.Refresh();
@@ -51,17 +50,15 @@ namespace BlueTeamerRole
                 listViewPcParts.Columns.Clear();
                 listViewPcParts.Columns.Add("PC Part", 200);
                 var pcParts = new[] { "RTX 3060", "i5-12400", "GTX 1650", "Ryzen 7", "RTX 3070", "i7-12700", "RTX 4080", "i9-12900K", "Ryzen 9", "RTX 4090", "Threadripper", "A100 GPU" };
-                foreach (var part in gameState.PurchasedItems.Where(p => pcParts.Contains(p)))
+                foreach (var part in GameState.PurchasedItems.Where(p => pcParts.Contains(p)))
                 {
                     listViewPcParts.Items.Add(new ListViewItem(part));
                 }
+                listViewPcParts.Refresh();
             }
             else
             {
                 MessageBox.Show($"MiningApp UI error: Form disposed={IsDisposed}, IsHandleCreated={IsHandleCreated}, labelMonero={(labelMonero == null ? "null" : "not null")}, labelWallet={(labelWallet == null ? "null" : "not null")}, labelMiningRate={(labelMiningRate == null ? "null" : "not null")}, listViewPcParts={(listViewPcParts == null ? "null" : "not null")}");
-                if (labelMonero != null) labelMonero.Text = "XMR: Error";
-                if (labelWallet != null) labelWallet.Text = "Wallet: Error";
-                if (labelMiningRate != null) labelMiningRate.Text = "Mining Rate: Error";
             }
         }
 
@@ -82,7 +79,6 @@ namespace BlueTeamerRole
 
         private void labelWallet_Click(object sender, EventArgs e)
         {
-
         }
     }
 }
