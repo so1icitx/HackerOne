@@ -93,9 +93,29 @@ namespace BlueTeamerRole.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blackman {
+            get {
+                object obj = ResourceManager.GetObject("blackman", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap erasebg_transformed {
             get {
                 object obj = ResourceManager.GetObject("erasebg-transformed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fatman {
+            get {
+                object obj = ResourceManager.GetObject("fatman", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

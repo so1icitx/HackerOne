@@ -116,6 +116,9 @@
     <EmbeddedResource Include="MiningApp.resx">
       <DependentUpon>MiningApp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NameForm.resx">
+      <DependentUpon>NameForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -180,6 +183,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\win11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fatman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackman.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -174,7 +174,7 @@ namespace BlueTeamerRole
             else if (currentTarget == "Alphabet Boys")
             {
                 currentTarget = "Elite Hackers";
-                hacksToNextTarget = 80;
+                hacksToNextTarget = 50;
                 GameState.BaseRaidChance = 0.30 - GameState.RaidChanceReduction;
                 if (!this.IsDisposed && IsHandleCreated)
                     txtTerminal.AppendText("Progressed to Elite Hackers!\r\n");

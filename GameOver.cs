@@ -15,6 +15,13 @@ namespace BlueTeamerRole
             var highScore = HighScoreManager.LoadHighScore();
             labelSummary.ForeColor = isVictory ? System.Drawing.Color.LimeGreen : System.Drawing.Color.Red;
             labelSummary.Text = isVictory ? "Victory! Regime Taken Down!" : "Game Over! RAIDED BY ALPHABET BOYS";
+            if (isVictory)
+            {
+                this.pictureBox2.BackgroundImage = global::BlueTeamerRole.Properties.Resources.blackman;
+            } else
+            {
+                this.pictureBox2.BackgroundImage = global::BlueTeamerRole.Properties.Resources.alphabetboys;
+            }
             labelStats.Text = $"Final Monero: {monero:F2} XMR\n" +
                               $"Hacks Completed: {hackCount}\n" +
                               $"Last Target: {currentTarget}\n" +

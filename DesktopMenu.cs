@@ -6,6 +6,7 @@ namespace BlueTeamerRole
     public partial class DesktopMenu : Form
     {
         private Main mainForm;
+        private MainMenu mainMenu; // Store MainMenu instance
 
         public DesktopMenu()
         {
@@ -18,11 +19,13 @@ namespace BlueTeamerRole
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Bounds = Screen.PrimaryScreen.Bounds;
-            this.buttonHighScore.Location = new System.Drawing.Point(1400, 53);
+            this.buttonHighScore.Location = new System.Drawing.Point(1400, 53); // Top-right position
         }
 
         private void buttonValorant_Click(object sender, EventArgs e)
         {
+            // Debug: Log PlayerName to check for reset
+            System.Diagnostics.Debug.WriteLine($"Debug: PlayerName = {GameState.PlayerName ?? "null"}");
             if (mainForm == null || mainForm.IsDisposed)
             {
                 mainForm = new Main(this);
@@ -55,7 +58,7 @@ namespace BlueTeamerRole
             {
                 Location = new System.Drawing.Point(210, 200),
                 Size = new System.Drawing.Size(750, 40),
-                Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))),
+                Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold),
                 ForeColor = System.Drawing.Color.Black,
                 BackColor = System.Drawing.Color.White
             };
@@ -64,7 +67,7 @@ namespace BlueTeamerRole
                 Location = new System.Drawing.Point(960, 200),
                 Size = new System.Drawing.Size(150, 40),
                 Text = "Go",
-                Font = new System.Drawing.Font("Consolas", 13.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))),
+                Font = new System.Drawing.Font("Consolas", 13.75F, System.Drawing.FontStyle.Bold),
                 ForeColor = System.Drawing.Color.Black,
                 BackColor = System.Drawing.Color.White
             };
@@ -73,7 +76,7 @@ namespace BlueTeamerRole
                 Location = new System.Drawing.Point(27, 365),
                 Size = new System.Drawing.Size(150, 50),
                 Text = "Back to Desktop",
-                Font = new System.Drawing.Font("Consolas", 13.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))),
+                Font = new System.Drawing.Font("Consolas", 13.75F, System.Drawing.FontStyle.Bold),
                 ForeColor = System.Drawing.Color.MediumPurple,
                 BackColor = System.Drawing.Color.Black
             };
@@ -140,17 +143,35 @@ namespace BlueTeamerRole
             MessageBox.Show($"High Score:\nMonero: {highScore.Monero:F2} XMR\nHacks: {highScore.Hacks}\nTarget: {highScore.Target}");
         }
 
-        private void DesktopMenu_Load_1(object sender, EventArgs e)
-        {
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Are you sure you want to exit?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show("Return to Main Menu?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                Application.Exit();
+                if (!string.IsNullOrEmpty(GameState.PlayerName))
+                {
+                    // Player has already entered their alias, go directly to MainMenu
+                    if (mainMenu == null || mainMenu.IsDisposed)
+                    {
+                        mainMenu = new MainMenu();
+                        mainMenu.FormClosed += (s, args) => this.Close();
+                    }
+                    this.Hide();
+                    mainMenu.Show();
+                }
+                else
+                {
+                    // New player, allow StoryForm -> NameForm sequence
+                    mainMenu = new MainMenu();
+                    mainMenu.FormClosed += (s, args) => this.Close();
+                    this.Hide();
+                    mainMenu.Show();
+                }
             }
+        }
+
+        private void DesktopMenu_Load_1(object sender, EventArgs e)
+        {
         }
     }
 }

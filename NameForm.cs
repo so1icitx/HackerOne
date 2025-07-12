@@ -22,10 +22,10 @@ namespace BlueTeamerRole
             promptLabel = new Label
             {
                 Text = "Enter Your Hacker Alias:",
-                Location = new System.Drawing.Point(300, 200),
+                Location = new System.Drawing.Point(300, 400),
                 Size = new System.Drawing.Size(600, 50),
                 ForeColor = System.Drawing.Color.LimeGreen,
-                Font = new System.Drawing.Font("Consolas", 20F, System.Drawing.FontStyle.Bold),
+                Font = new System.Drawing.Font("Consolas", 23F, System.Drawing.FontStyle.Bold),
                 TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             };
             this.Controls.Add(promptLabel);
@@ -33,11 +33,11 @@ namespace BlueTeamerRole
             // Name input textbox
             nameTextBox = new TextBox
             {
-                Location = new System.Drawing.Point(300, 300),
-                Size = new System.Drawing.Size(600, 50),
-                Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold),
-                ForeColor = System.Drawing.Color.Black,
-                BackColor = System.Drawing.Color.LimeGreen,
+                Location = new System.Drawing.Point(300, 500),
+                Size = new System.Drawing.Size(720, 200),
+                Font = new System.Drawing.Font("Consolas", 21F, System.Drawing.FontStyle.Bold),
+                ForeColor = System.Drawing.Color.Lime,
+                BackColor = System.Drawing.Color.Black,
                 TextAlign = HorizontalAlignment.Center
             };
             nameTextBox.KeyDown += (s, e) =>
@@ -53,7 +53,7 @@ namespace BlueTeamerRole
             submitButton = new Button
             {
                 Text = "Submit",
-                Location = new System.Drawing.Point(450, 400),
+                Location = new System.Drawing.Point(820, 575),
                 Size = new System.Drawing.Size(200, 80),
                 Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold),
                 ForeColor = System.Drawing.Color.MediumPurple,
@@ -66,7 +66,7 @@ namespace BlueTeamerRole
             backButton = new Button
             {
                 Text = "Back",
-                Location = new System.Drawing.Point(50, 600),
+                Location = new System.Drawing.Point(50, 720),
                 Size = new System.Drawing.Size(200, 80),
                 Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold),
                 ForeColor = System.Drawing.Color.MediumPurple,
@@ -105,15 +105,8 @@ namespace BlueTeamerRole
             this.Hide();
         }
 
-        private void InitializeComponent()
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.SuspendLayout();
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 738);
-            this.Name = "NameForm";
-            this.Text = "Enter Your Alias";
-            this.ResumeLayout(false);
         }
     }
 }

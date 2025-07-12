@@ -70,7 +70,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackgroundImage = global::BlueTeamerRole.Properties.Resources.alphabetboys;
+            //this.pictureBox2.BackgroundImage = global::BlueTeamerRole.Properties.Resources.alphabetboys;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(1029, 201);
             this.pictureBox2.Name = "pictureBox2";

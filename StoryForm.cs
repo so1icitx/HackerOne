@@ -76,12 +76,13 @@ namespace BlueTeamerRole
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(790, 623);
+            this.button1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.button1.Location = new System.Drawing.Point(1400, 900);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(192, 79);
+            this.button1.Size = new System.Drawing.Size(300, 109);
             this.button1.TabIndex = 0;
             this.button1.Text = "SKIP";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // StoryForm
@@ -92,6 +93,7 @@ namespace BlueTeamerRole
             this.Controls.Add(this.button1);
             this.Name = "StoryForm";
             this.Text = "Story";
+            this.Load += new System.EventHandler(this.StoryForm_Load);
             this.ResumeLayout(false);
 
         }
@@ -99,10 +101,15 @@ namespace BlueTeamerRole
         private void button1_Click(object sender, EventArgs e)
         {
 
-            DesktopMenu desktopMenu = new DesktopMenu();
+            NameForm desktopMenu = new NameForm();
             desktopMenu.FormClosed += (s, args) => this.Close();
             desktopMenu.Show();
             this.Hide();
+        }
+
+        private void StoryForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
