@@ -73,6 +73,16 @@ namespace BlueTeamerRole.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _9350839_monero_wallpaper {
+            get {
+                object obj = ResourceManager.GetObject("9350839-monero-wallpaper", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap alphabetboys {
             get {
                 object obj = ResourceManager.GetObject("alphabetboys", resourceCulture);
@@ -103,6 +113,36 @@ namespace BlueTeamerRole.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap chad {
+            get {
+                object obj = ResourceManager.GetObject("chad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap click {
+            get {
+                object obj = ResourceManager.GetObject("click", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap crypto_lock {
+            get {
+                object obj = ResourceManager.GetObject("crypto-lock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap erasebg_transformed {
             get {
                 object obj = ResourceManager.GetObject("erasebg-transformed", resourceCulture);
@@ -123,6 +163,16 @@ namespace BlueTeamerRole.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Leonardo_Dicaprio_Wolf_of_Wall_Street_Rolex_GMT_in_Yellow_Gold {
+            get {
+                object obj = ResourceManager.GetObject("Leonardo-Dicaprio-Wolf-of-Wall-Street-Rolex-GMT-in-Yellow-Gold", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lindows {
             get {
                 object obj = ResourceManager.GetObject("lindows", resourceCulture);
@@ -136,6 +186,26 @@ namespace BlueTeamerRole.Properties {
         internal static System.Drawing.Bitmap monero {
             get {
                 object obj = ResourceManager.GetObject("monero", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap monero_classified {
+            get {
+                object obj = ResourceManager.GetObject("monero-classified", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap monero_electronic_cash {
+            get {
+                object obj = ResourceManager.GetObject("monero-electronic-cash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,6 +236,26 @@ namespace BlueTeamerRole.Properties {
         internal static System.Drawing.Bitmap openart_image_vboR3s0F_1751522624983_raw {
             get {
                 object obj = ResourceManager.GetObject("openart-image_vboR3s0F_1751522624983_raw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap penguin {
+            get {
+                object obj = ResourceManager.GetObject("penguin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap simga {
+            get {
+                object obj = ResourceManager.GetObject("simga", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

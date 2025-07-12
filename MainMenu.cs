@@ -142,7 +142,10 @@ namespace BlueTeamerRole
 
         private void mainbutton2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Options not implemented yet!");
+            Options storyForm = new Options();
+            storyForm.FormClosed += (s, args) => this.Close();
+            storyForm.Show();
+            this.Hide();
         }
 
         private void mainbutton3_Click(object sender, EventArgs e)

@@ -121,8 +121,17 @@
   <data name="alphabetboys" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\alphabetboys.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="simga" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\simga.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="chad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="openart-image_vboR3s0F_1751522624983_raw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\openart-image_vboR3s0F_1751522624983_raw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="monero-electronic-cash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\monero-electronic-cash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="N1x_ejqB-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\N1x_ejqB-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,11 +139,20 @@
   <data name="N1x_ejqB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\N1x_ejqB.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="crypto-lock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\crypto-lock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blackman" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blackman.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="monero" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\monero.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Leonardo-Dicaprio-Wolf-of-Wall-Street-Rolex-GMT-in-Yellow-Gold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Leonardo-Dicaprio-Wolf-of-Wall-Street-Rolex-GMT-in-Yellow-Gold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fatman" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fatman.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,25 +160,34 @@
   <data name="val" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\val.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="erasebg-transformed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\erasebg-transformed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tor1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tor1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tor-browser-icon-189268332" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tor-browser-icon-189268332.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="lindows" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lindows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="monero-classified" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\monero-classified.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="erasebg-transformed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\erasebg-transformed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="penguin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\penguin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="win11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\win11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tor1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tor1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="9350839-monero-wallpaper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\9350839-monero-wallpaper.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="blackman" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blackman.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="click" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\click.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

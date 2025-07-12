@@ -52,6 +52,12 @@
     <Compile Include="DesktopMenu.Designer.cs">
       <DependentUpon>DesktopMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Egg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Egg.Designer.cs">
+      <DependentUpon>Egg.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameOver.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,12 @@
     </Compile>
     <Compile Include="GameState.cs" />
     <Compile Include="HighScoreManager.cs" />
+    <Compile Include="How.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="How.Designer.cs">
+      <DependentUpon>How.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,11 +96,41 @@
     <Compile Include="MiningApp.Designer.cs">
       <DependentUpon>MiningApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Monero1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Monero1.Designer.cs">
+      <DependentUpon>Monero1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Monero2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Monero2.Designer.cs">
+      <DependentUpon>Monero2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Monero3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Monero3.Designer.cs">
+      <DependentUpon>Monero3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Monero4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Monero4.Designer.cs">
+      <DependentUpon>Monero4.cs</DependentUpon>
+    </Compile>
     <Compile Include="NameForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NameForm.Designer.cs">
       <DependentUpon>NameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options.Designer.cs">
+      <DependentUpon>Options.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,8 +143,14 @@
     <EmbeddedResource Include="DesktopMenu.resx">
       <DependentUpon>DesktopMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Egg.resx">
+      <DependentUpon>Egg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameOver.resx">
       <DependentUpon>GameOver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="How.resx">
+      <DependentUpon>How.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -116,8 +164,23 @@
     <EmbeddedResource Include="MiningApp.resx">
       <DependentUpon>MiningApp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Monero1.resx">
+      <DependentUpon>Monero1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Monero2.resx">
+      <DependentUpon>Monero2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Monero3.resx">
+      <DependentUpon>Monero3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Monero4.resx">
+      <DependentUpon>Monero4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NameForm.resx">
       <DependentUpon>NameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options.resx">
+      <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -189,6 +252,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\blackman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crypto-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9350839-monero-wallpaper.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monero-classified.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monero-electronic-cash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\simga.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Leonardo-Dicaprio-Wolf-of-Wall-Street-Rolex-GMT-in-Yellow-Gold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\penguin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\click.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
